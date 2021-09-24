@@ -123,7 +123,7 @@
   .right-arrow{
     position: absolute;
     top: 50%;
-    right: 3vw;
+    left: 83vw;
     font-size: 3rem;
     color: #0ab200;
     z-index: 10;

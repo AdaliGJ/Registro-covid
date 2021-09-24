@@ -32,7 +32,6 @@ class Home extends React.Component{
                     <h3>Welcome, {this.state.dpi_usuario}</h3>
                     <ImgCarousel slides={SliderData}/>
                     <DescImagen texto="Esta es la sección de inicio de nuestra página, navega para conocer más sobre la vacuna y registro" />
-                    <Acordeon titulo="Más información" texto="Este es un texto de prueba para saber cómo se comporta la página si se le agregan noticias"/>
                     <TextoLado derecha={true} texto="Cada 21 de septiembre se conmemora el Día Mundial del Alzheimer, enfermedad que se caracteriza por la pérdida irreversible de las capacidades intelectuales" img="https://www.mspas.gob.gt/media/k2/items/cache/8510c1d80ad0564ec5927fdaa5505e47_XL.jpg"/>
                     <TextoLado derecha={false} texto="Los coronavirus son conocidos por provocar un amplio rango de enfermedades, desde un resfriado hasta infecciones respiratorias." img="https://ichef.bbci.co.uk/news/640/cpsprodpb/14A35/production/_115033548_gettyimages-1226314512.jpg"/>
                     <TextoLado derecha={false} texto="Este es un texto de prueba para saber cómo se comporta la página si se le agregan noticias" img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo63Fxx3M-EXKuXuMmQTvUxhExnGU_0f76xQ&usqp=CAU"/>
