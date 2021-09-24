@@ -63,6 +63,7 @@ class UserData extends React.Component{
         this.mySubmit=this.mySubmit.bind(this);
         this.getData=this.getData.bind(this);
         this.updateData=this.updateData.bind(this);
+      
     }
 
     mySubmit(event){
@@ -150,7 +151,11 @@ class UserData extends React.Component{
         .catch(function (response) {
             console.log(response);
         });
+
+        this.getData();
+        
     }
+
 
 
     componentDidMount(){
@@ -188,9 +193,9 @@ class UserData extends React.Component{
                             <hr/>
                             <FormControl className="outlined-required" variant ="outlined">
                                 <InputLabel>Vacuna</InputLabel>
-                                <Select label="Vacuna" displayEmpty onSelect={e=>this.setState({vacuna: e.target.value})} value={this.state.id_vacuna}>
+                                <Select label="Vacuna" displayEmpty onChange={e=>this.setState({id_vacuna: e.target.value})} value={this.state.id_vacuna}>
                                     {this.state.vacunas.map((vac)=>(
-                                        <MenuItem key={vac.id_vacuna} value={vac.id_vacuna}>{vac.nombre}</MenuItem>
+                                        <MenuItem key={vac.id_vacuna} value={vac.id_vacuna}  type="number">{vac.nombre}</MenuItem>
                                     ))}
                                 </Select>
                             </FormControl> 

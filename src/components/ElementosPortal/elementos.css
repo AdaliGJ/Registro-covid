@@ -1,18 +1,19 @@
 .texto-derecha, .texto-izquierda{
-    width: 45vw;
+    width: 90vw;
     margin-top: 3vh;
     margin-bottom: 3vh;
-    margin-left: 1vw;
-    margin-right: 1vw;
+    margin-left: 3vw;
+    margin-right: 0vw;
     display: flex;
     text-align: justify;
     align-content: center;
     height: max-content;
-    float: left;
+    /*float: left;*/
     border-color: #23004369;
     border-style:groove;
     border-width: 0.05px;
     min-height: 30vh;
+    float:initial;
 }
 
 .imagen-derecha, .imagen-izquierda{
@@ -27,7 +28,7 @@
 
 
 .content{
-    width: 80%;
+    width: 90%;
 }
 
 .texto-derecha .imagen-izquierda{
@@ -47,6 +48,10 @@
     display: block;
     margin: auto;
     margin-bottom: 2vw;
+}
+
+.solo-texto{
+    display: none;
 }
 
 .imagen-columnas{
@@ -73,18 +78,33 @@
     text-align: justify;
     align-content: center;
     margin: auto;
+    margin-bottom: 2vh;
 }
 
 .img-tab{
     width: 25vw;
     height: auto;
+    display: block;
 }
+
+.tab-box{
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tab-content{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    align-content: center;
+}
+
 
 
 /**********************/
 .slider {
     position: relative;
-    height: 100vh;
     width: 90vw;
     display: flex;
     justify-content: center;

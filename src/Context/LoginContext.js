@@ -1,3 +1,3 @@
-import React, {useState, useEffect, createContext} from 'react';
+import {createContext} from 'react';
 
 export const LoginContext = createContext({});

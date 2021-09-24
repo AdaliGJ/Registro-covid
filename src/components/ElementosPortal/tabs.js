@@ -18,22 +18,28 @@ class TabsImg extends Component{
 
     render(){
         return (
-            <Box className="tab-box">
-                <TabContext value={this.state.value}>
-                    <Box className="tab-top">
-                        <TabList onChange={this.handleChange}>
-                        <Tab label="Item One" value="1" />
-                        <Tab label="Item Two" value="2" />
-                        <Tab label="Item Three" value="3" />
-                        </TabList>
-                    </Box>
-                    <TabPanel value="1">{this.props.texto}
-                        <img src={this.props.img} className="img-tab"/>
+            <div className="tab-box">
+                <Box className='tab-content'>
+                    <TabContext value={this.state.value} >
+                        <Box className="tab-top">
+                            <TabList onChange={this.handleChange} className="tab-list" TabIndicatorProps={{ style: { background: "#0ab200"} }}>
+                            <Tab label={this.props.titulo1} value="1" />
+                            <Tab label={this.props.titulo2} value="2" />
+                            <Tab label={this.props.titulo3} value="3" />
+                            </TabList>
+                        </Box>
+                        <TabPanel value="1">{this.props.texto1}
+                            <img src={this.props.img1} className="img-tab"/>
+                        </TabPanel>
+                        <TabPanel value="2">{this.props.texto2}
+                            <img src={this.props.img2} className="img-tab"/>
+                        </TabPanel>
+                        <TabPanel value="3">{this.props.texto3}
+                        <img src={this.props.img3} className="img-tab"/>
                     </TabPanel>
-                    <TabPanel value="2">Item Two</TabPanel>
-                    <TabPanel value="3">Item Three</TabPanel>
-                </TabContext>
-          </Box>
+                    </TabContext>
+                </Box>
+          </div>
         );
     }
 }

@@ -9,8 +9,8 @@ class DescImagen extends Component{
         return (
             <Card className='texto-columna'>
                 <Container>
-                    <div className="imagen-columnas">
-                        <img src={this.props.img} />
+                    <div className={this.props.img ? "imagen-columnas" : "solo-texto"}>
+                        <img src={this.props.img}/>
                     </div>       
                         <Typography variant="subtitle1" component="div">
                                     {this.props.texto}
