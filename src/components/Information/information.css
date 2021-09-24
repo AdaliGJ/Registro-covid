@@ -1,0 +1,54 @@
+.page{
+    min-height: 90vh;
+    padding-left: auto;
+    padding-right: auto;
+}
+
+.contact{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    background: #120e15;
+    background: linear-gradient(90deg, #120e15 0%, #230043 35%, #120e15 100%);
+}
+
+.contact_form{
+    color: #230043;
+    height: 80vh;
+    width: 80vw;
+    margin: auto;
+    margin-top: 5vh;
+    text-align: center;
+    border-color: #230043;
+    border-style: solid;
+    border-width: 1px;
+
+}
+
+.outlined-required{
+    width: 70vw;
+
+}
+.outlined-short{
+    width: 34vw;
+}
+
+#send{
+    background-color: #0ab200;
+    color: #ffff;
+    width: 40vw;
+    margin: 2% auto;
+}
+
+#text-together{
+    display: flex;
+    justify-content: center;
+}
+
+hr{
+    margin: 1vw;
+}
+
+

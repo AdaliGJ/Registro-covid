@@ -1,0 +1,21 @@
+.footer{
+    position: relative;
+    bottom: 0;
+    margin-right: 0vw;
+    margin-left: auto;
+    background-color: #120e15;
+    color: white;
+    height: max-content;
+    padding-top: 2vw;
+    margin-top: 2vh;
+}
+
+.footer a{
+    color:white;
+    text-decoration: none;
+    line-height: 1.6;
+}
+
+a:hover{
+    color:#0ab200;
+}

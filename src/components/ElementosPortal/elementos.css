@@ -1,0 +1,139 @@
+.texto-derecha, .texto-izquierda{
+    width: 45vw;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    display: flex;
+    text-align: justify;
+    align-content: center;
+    height: max-content;
+    float: left;
+    border-color: #23004369;
+    border-style:groove;
+    border-width: 0.05px;
+    min-height: 30vh;
+}
+
+.imagen-derecha, .imagen-izquierda{
+   max-width: 15vw;
+   max-height: 15vw;
+   float: left;
+   margin: auto;
+   margin-left: 1vw;
+   margin-right: 1vw;
+   
+}
+
+
+.content{
+    width: 80%;
+}
+
+.texto-derecha .imagen-izquierda{
+    display: none;
+}
+
+.texto-izquierda .imagen-derecha{
+    display: none;
+}
+
+
+.texto-columna{
+    width: 80vw;
+    margin-top: 2vw;
+    text-align: justify;
+    align-content: center;
+    display: block;
+    margin: auto;
+    margin-bottom: 2vw;
+}
+
+.imagen-columnas{
+    margin-top: 2vh;
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1vh;
+}
+
+.imagen-columnas img{
+   width: 100%;
+}
+
+.contact-data{
+    width: 77vw;
+    align-content: center;
+}
+
+.acordeon-expanded{
+    width: 90vw;
+    margin-top: 2vw;
+    text-align: justify;
+    align-content: center;
+    margin: auto;
+}
+
+.img-tab{
+    width: 25vw;
+    height: auto;
+}
+
+
+/**********************/
+.slider {
+    position: relative;
+    height: 100vh;
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-bottom: 3vh;
+  }
+  
+  .carousel-image {
+    width: 80vw;
+    height: auto;
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  .right-arrow{
+    position: absolute;
+    top: 50%;
+    right: 3vw;
+    font-size: 3rem;
+    color: #0ab200;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+    background-color: #120e15;
+    padding: 1vw;
+    border-radius: 50%;
+  }
+  
+  .left-arrow {
+    position: absolute;
+    top: 50%;
+    left: 3vw;
+    font-size: 3rem;
+    color: #0ab200;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+    background-color: #120e15;
+    padding: 1vw;
+    border-radius: 50%;
+  }
+  
+  .slide {
+    opacity: 0;
+    transition-duration: 1s ease;
+  }
+  
+  .slide-active {
+    opacity: 1;
+    transition-duration: 1s;
+  }

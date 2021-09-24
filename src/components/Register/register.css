@@ -1,0 +1,57 @@
+.register{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    min-height: 100%;
+    height: max-content;
+    width: 100%;
+    background: #120e15;
+    background: linear-gradient(90deg, #120e15 0%, #230043 35%, #120e15 100%);
+}
+
+.register_form{
+    height: max-content;
+    width: 60vw;
+    margin: auto;
+    margin-top: 5vh;
+    text-align: center;
+}
+
+.content-register{
+    margin-left: 8vw;
+    text-align: center;
+    margin-right: 0px;
+}
+
+.standard-basic{
+    position: relative;
+    width: 40vw;
+    margin: 0 5%;
+}
+
+#enviar{
+    background-color: #0ab200;
+    color: #ffff;
+    width: 40vw;
+    margin-top: 0%;
+}
+
+.register a{
+    text-decoration: none;
+    color: #230043;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #0ab200;
+}
+
+#tipo_usuario{
+    position: relative;
+    width: 40vw;
+    margin-top: 3vh;
+}
+
+#noerror{
+    display: none;
+}

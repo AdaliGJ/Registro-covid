@@ -1,0 +1,53 @@
+.login{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    background: #120e15;
+    background: linear-gradient(90deg, #120e15 0%, #230043 35%, #120e15 100%);
+}
+
+.login_form{
+    height: max-content;
+    min-height: 70vh;
+    width: 60vw;
+    margin: auto;
+    margin-top: 5vh;
+    text-align: center;
+}
+
+.content-form{
+    width: 100%;
+    align-content: center;
+}
+
+
+
+.standard-basic{
+    position: relative;
+    width: 40vw;
+    margin: 0 5%;
+}
+
+#enviar{
+    background-color: #0ab200;
+    color: #ffff;
+    width: 40vw;
+    margin-top: 5%;
+}
+
+.login a{
+    text-decoration: none;
+    color: #230043;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #0ab200;
+}
+
+#noerror{
+    display: none;
+}
+
