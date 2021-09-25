@@ -94,8 +94,6 @@ class UserTable extends React.Component{
     componentDidMount(){
 
         const context = this.context;
-        this.setState({dPI: context.username});
-        console.log(this.state.dPI);
 
         const url = 'http://localhost/scripts/trabajos.php';
 

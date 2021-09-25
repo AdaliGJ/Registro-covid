@@ -101,6 +101,7 @@ class DataRegister extends React.Component{
                 enfermedad: false,
                 trabajo: this.state.userinfo.profesion,
             });
+            context.setTipoUsuario(this.state.userinfo.tipo_usuario);
             if(this.state.userinfo.tel1==this.state.userinfo.tel2){
                 this.setState({
                     tel2: ''
