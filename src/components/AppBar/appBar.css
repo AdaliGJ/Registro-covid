@@ -1,4 +1,4 @@
-#menu-toggle{
+#icon{
     color: #0ab200;
 }
 
@@ -9,18 +9,26 @@
     border-style: solid;
     border-width: 0.5px;
     border-color: #230043;
+    float: none;
 }
 
 #appbar{
     color: #fff;
     background-color: #120e15;
-    
-    
+    overflow-x: scroll;
 }
 
-#info_button, #home_button,  #news_button, #contact_button{
+#appbar::-webkit-scrollbar {
+    display: none;
+  }
+
+#info_button, #home_button,  #news_button, #contact_button, #siout, #nolog{
     color: #0ab200;
     background-color: transparent;
     border-color: #230043;
     font-size: 11px;
+}
+
+#noout, #silog{
+    display: none;
 }

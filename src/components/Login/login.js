@@ -20,7 +20,7 @@ import MenuBar from "./../AppBar/appBar.js";
 
 function Login(props){
 
-    const { setUsername, username }=useContext(LoginContext);
+    const { setUsername, username, tipoUsuario, setTipoUsuario }=useContext(LoginContext);
     const [dpi, setDpi]=useState(null);
     const [msg, setMsg]=useState('');
     const[error, setError]=useState(false);
@@ -37,14 +37,13 @@ function Login(props){
                 formData.append('dpi_usuario',usuarioRef.current.value);
                 formData.append('clave', contRef.current.value);
 
-         
-
                 console.log(usuarioRef.current.value);
                 console.log(contRef.current.value);
                 axios.post(url, formData)
                 .then(function (response) {
                     console.log(response);
                     setUsername(usuarioRef.current.value);
+                    setTipoUsuario(response.data.tipo_usuario);
                     history.push('/home');
                 })
                 .catch(function (response) {
@@ -54,7 +53,9 @@ function Login(props){
                 });
 
                 //
+
                 console.log(username);
+                console.log(tipoUsuario);
                 console.log(msg);
 
         }

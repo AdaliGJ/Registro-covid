@@ -22,14 +22,12 @@ function App() {
       <div className="App">
         <LoginContext.Provider value={{username, setUsername, setTipoUsuario, tipoUsuario}}> 
         {username ?  <Switch> 
-            <Route exact path="/register" component={Register}/>
             <Route exact path="/register-data" component={DataRegister}/>
-            <Route exact path="/login" component={Login}/>
             <Route exact path="/home" component={Home}/>
             <Route exact path="/contact" component={Contact}/>
             <Route exact path="/information" component={Information}/>
             <Route exact path="/news" component={News}/>
-            <Route exact path="/prueba" component={UserData}/>
+            <Route exact path="/health-employees" component={UserData}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>:
           <Switch> 
@@ -40,7 +38,7 @@ function App() {
             <Route exact path="/contact" component={Contact}/>
             <Route exact path="/information" component={Information}/>
             <Route exact path="/news" component={News}/>
-            <Route exact path="/prueba" component={UserData}/>
+            <Route exact path="/health-employees" component={UserData}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>}
         </LoginContext.Provider>  
