@@ -54,7 +54,7 @@ import './appBar.css'
             <Button id="home_button" onClick={news}>Noticias</Button>
             <Button id="contact_button" onClick={info}>Información</Button>
             <Button id="news_button" onClick={contact}>Contacto</Button>
-            <IconButton id={tipoUsuario?"siout":"noout"} onClick={signout}>
+            <IconButton id={username?"siout":"noout"} onClick={signout}>
               <ExitToAppIcon />
             </IconButton>
             <Button id={username? "silog":"nolog"} onClick={login}>Inicia Sesión</Button>

@@ -25,7 +25,9 @@ function Register(){
     const { setUsername, setTipoUsuario }=useContext(LoginContext);
     const[error, setError]=useState(false);
     const[admin, setAdmin]=useState(false);
-    const[mensaje, setMensaje]=useState('');    
+    const[mensaje, setMensaje]=useState(''); 
+    const[userType, setUserType]=useState(null);
+
 
     const usuarioRef = useRef(null);
     const contRef = useRef(null);
@@ -43,12 +45,12 @@ function Register(){
         console.log('this is the submit ' + usuarioRef.current.value);
         console.log('this is the submit ' + contRef.current.value);
         console.log('this is the submit ' + cont2Ref.current.value);
-        console.log('this is the submit ' + tipoUsuario.current.value);
+        console.log('this is the submit ' + userType);
 
         let formData = new FormData();
         formData.append('dpi_usuario', usuarioRef.current.value);
         formData.append('clave', contRef.current.value);
-        formData.append('tipo_usuario', tipoUsuario.current.value);
+        formData.append('tipo_usuario', userType);
         
 
         if(contRef.current.value===cont2Ref.current.value){
@@ -56,7 +58,6 @@ function Register(){
         .then(function (response) {
             console.log(response)
             setUsername(usuarioRef.current.value);
-            setTipoUsuario(tipoUsuario.current.value);
             history.push('/register-data');
         })
         .catch(function (response) {
@@ -71,9 +72,7 @@ function Register(){
             setMensaje("Error: Contraseñas no coinciden");
         }
 
-        if(tipoUsuario.current.value===3){
-            setAdmin(true);
-        }
+        
 
         console.log(error);
     }
@@ -118,7 +117,7 @@ function Register(){
                     <Grid item>
                         <FormControl id="tipo_usuario">
                             <InputLabel id="demo-simple-select-helper-label">Tipo de usuario</InputLabel>
-                            <Select  id="demo-simple-select-helper" label="Tipo de usuario" displayEmpty inputRef={tipoUsuario}>
+                            <Select  id="demo-simple-select-helper" label="Tipo de usuario" displayEmpty onChange={e=>setUserType(e.target.value)}>
                                 <MenuItem value={3}>Administrador</MenuItem>
                                 <MenuItem value={2}>Empleado</MenuItem>
                                 <MenuItem value={1}>Usuario</MenuItem>

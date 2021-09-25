@@ -1,6 +1,6 @@
 import Login from "./components/Login/login";
 import DataRegister from "./components/DataRegister/dataregister";
-import UsersTable from "./components/Users/users";
+import UserTable from "./components/UserTable/userTable";
 import Register from "./components/Register/register";
 import Home from "./components/Information/home";
 import Contact from "./components/Information/contact";
@@ -22,12 +22,13 @@ function App() {
       <div className="App">
         <LoginContext.Provider value={{username, setUsername, setTipoUsuario, tipoUsuario}}> 
         {username ?  <Switch> 
-            <Route exact path="/register-data" component={DataRegister}/>
+            <Route  path="/register-data" component={DataRegister}/>
             <Route exact path="/home" component={Home}/>
             <Route exact path="/contact" component={Contact}/>
             <Route exact path="/information" component={Information}/>
             <Route exact path="/news" component={News}/>
             <Route exact path="/health-employees" component={UserData}/>
+            <Route exact path="/admin" component={UserTable}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>:
           <Switch> 
@@ -39,6 +40,7 @@ function App() {
             <Route exact path="/information" component={Information}/>
             <Route exact path="/news" component={News}/>
             <Route exact path="/health-employees" component={UserData}/>
+            <Route exact path="/admin" component={UserTable}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>}
         </LoginContext.Provider>  

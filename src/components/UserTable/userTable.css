@@ -1,0 +1,70 @@
+.data{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    min-height: 100vh;
+    height: max-content;
+    width: 100%;
+    background: #120e15;
+    background: linear-gradient(90deg, #120e15 0%, #230043 35%, #120e15 100%);
+    text-align: center;
+}
+
+
+.data_form {
+    color: #230043;
+    height: max-content;
+    width: 80vw;
+    margin: auto;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    text-align: center;
+    border-color: #230043;
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+}
+
+.register-data{
+    width: 77vw;
+    align-content: center;
+}
+
+.data_form .outlined-required{
+    width: 34vw;
+}
+
+#genero1{
+    width: 8vw;
+}
+
+.data_form .outlined-required3{
+    width: 29vw;
+}
+
+.outlined-short{
+    width: 34vw;
+}
+
+#send1{
+    background-color: #0ab200;
+    color: #ffff;
+    width: 40vw;
+    margin: 2% auto;
+}
+
+.text-together{
+    display: flex;
+    justify-content: center;
+}
+
+hr{
+    margin: 1vw;
+}
+
+
+#search1{
+    background-color: #230043;
+    color: #0ab200;
+    height: 9vh;
+}
