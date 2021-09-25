@@ -33,11 +33,12 @@ class UserTable extends React.Component{
             trabajo: null,
             userinfo: [],
             trabajos: [],
-            es_usuario: false
+            es_usuario: 0
         }
 
         this.register=this.register.bind(this);
         this.getData=this.getData.bind(this);
+        this.deleteData=this.deleteData.bind(this);
     }
 
 
@@ -90,6 +91,20 @@ class UserTable extends React.Component{
         });
     }
 
+    deleteData(){
+        const url = 'http://localhost/scripts/admin2.php';
+
+        let formData = new FormData();
+        formData.append('dpi', this.state.dPI);
+
+        axios.post(url, formData)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (response) {
+            console.log(response);
+        });
+    }
     
     componentDidMount(){
 
@@ -154,6 +169,7 @@ class UserTable extends React.Component{
                 </CardContent>
                 <CardActions className="action">
                     <Button id="send1" variant="contained" onClick={this.register}>Actualizar los datos</Button>
+                    <Button id={this.state.es_usuario==1? "send2" : "nosend"} variant="contained" onClick={this.deleteData}>Eliminar Usuario</Button>
                 </CardActions>
                 </Card>
             </div>

@@ -53,6 +53,17 @@
     margin: 2% auto;
 }
 
+#send2{
+    background-color: #230043;
+    color: #ffff;
+    width: 40vw;
+    margin: 2% auto;
+}
+
+#nosend{
+    display: none;
+}
+
 .text-together{
     display: flex;
     justify-content: center;
