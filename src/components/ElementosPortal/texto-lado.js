@@ -9,8 +9,10 @@ import './elementos.css'
 class TextoLado extends Component{
     render(){
         return (
-        <Card sx={{ display: 'flex' }} className={this.props.derecha? 'texto-derecha': 'texto-izquierda'}>
-        <CardMedia className='imagen-izquierda' component="img" image={this.props.img}/>
+        <Card sx={{ display: 'flex', verticalAlign: 'middle' }} className= 'texto'>
+        <div className={this.props.derecha? 'imagen-derecha': 'imagen-izquierda'}>
+            <CardMedia  component="img" image={this.props.img}/>
+        </div>
             <Box>
                 <CardContent className="content">
                 <Typography variant="subtitle1" component="div">
@@ -18,7 +20,7 @@ class TextoLado extends Component{
                 </Typography>
                 </CardContent>
             </Box>
-            <CardMedia className='imagen-derecha' component="img" image={this.props.img}/>
+            
             </Card>
         );
     }
