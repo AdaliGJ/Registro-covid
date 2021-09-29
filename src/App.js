@@ -9,12 +9,29 @@ import News from "./components/Information/news";
 import {Route, BrowserRouter as Router, Switch, Link, Redirect} from "react-router-dom";
 import {LoginContext} from "./Context/LoginContext.js";
 import UserData from "./components/EmpleadosSalud/empleado-salud";
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 
 function App() {
 
-  const[username, setUsername] = useState(null);
-  const[tipoUsuario, setTipoUsuario]=useState(null);
+  const getUsername=()=>{
+    const localUsername = localStorage.getItem('username');
+    return localUsername ? JSON.parse(localUsername) : null;
+  }
+
+  const getTipoUsuario=()=>{
+    const localTipoUsuario = localStorage.getItem('tipoUsuario');
+    return localTipoUsuario ? JSON.parse(localTipoUsuario) : null;
+  }
+
+
+  const[username, setUsername] = useState(getUsername);
+  const[tipoUsuario, setTipoUsuario]=useState(getTipoUsuario);
+
+  useEffect(()=>{
+    localStorage.setItem('username', JSON.stringify(username));
+    localStorage.setItem('tipoUsuario', JSON.stringify(tipoUsuario));
+  })
+  
 
   return (
     
