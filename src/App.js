@@ -10,6 +10,7 @@ import {Route, BrowserRouter as Router, Switch, Link, Redirect} from "react-rout
 import {LoginContext} from "./Context/LoginContext.js";
 import UserData from "./components/EmpleadosSalud/empleado-salud";
 import React, {useState,useEffect} from 'react';
+import InsertVacunas from "./components/Vacunas/vacunas";
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
             <Route exact path="/information" component={Information}/>
             <Route exact path="/news" component={News}/>
             <Route exact path="/health-employees" component={UserData}/>
+            <Route exact path="/vacunas" component={InsertVacunas}/>
             <Route exact path="/admin" component={UserTable}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>:
@@ -58,6 +60,7 @@ function App() {
             <Route exact path="/news" component={News}/>
             <Route exact path="/health-employees" component={UserData}/>
             <Route exact path="/admin" component={UserTable}/>
+            <Route exact path="/vacunas" component={InsertVacunas}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>}
         </LoginContext.Provider>  

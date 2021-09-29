@@ -81,6 +81,7 @@ class Footer extends Component{
                                 <FooterBox link='/mi-cuenta' title="Mi cuenta" name={this.state.dpi_usuario ? "sifoot":"nofoot"}/>
                                 <FooterBox link='/health-employees' title="Módulo empleados" name={this.context.tipoUsuario==2 ? "sifoot":"nofoot"}/>
                                 <FooterBox link='/admin' title="Administración usuarios" name={this.context.tipoUsuario==3 ? "sifoot":"nofoot"}/>
+                                <FooterBox link='/Vacunas' title="Ingreso Vacunas" name={this.context.tipoUsuario==3 ? "sifoot":"nofoot"}/>
                             </Grid>
                             <Grid item xs={4}> 
                                 <Box borderBottom={1}>Redes sociales</Box>

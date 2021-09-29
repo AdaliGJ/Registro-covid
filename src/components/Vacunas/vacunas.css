@@ -1,0 +1,51 @@
+
+.vacuna{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: max-content;
+    width: 100%;
+    background: #120e15;
+    background: linear-gradient(90deg, #120e15 0%, #230043 35%, #120e15 100%);
+}
+
+.vacunas_form{
+    color: #230043;
+    min-height: 55vh;
+    width: 80vw;
+    margin: auto;
+    margin-top: 5vh;
+    text-align: center;
+    border-color: #230043;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 8vh;
+}
+
+#no_vacuna_success{
+    display: none;
+}
+
+.outlined-required{
+    width: 70vw;
+
+}
+.outlined-short{
+    width: 34vw;
+}
+
+#sendVacuna{
+    background-color: #0ab200;
+    color: #ffff;
+    width: 40vw;
+    margin: 2% auto;
+}
+
+.together{
+    display: flex;
+    justify-content: center;
+}
+
+.vacunas-data{
+    margin-left: 3vw;
+}
