@@ -1,0 +1,26 @@
+.import-page{
+    min-height: 100vh;
+    height: max-content;
+    padding-left: auto;
+    padding-right: auto;
+    background: #120e15;
+    background: linear-gradient(90deg, #120e15 0%, #230043 35%, #120e15 100%);
+    margin-bottom: 0;
+}
+
+.import-form{
+    min-height: 80vh;
+    width: 50vw;
+    margin: auto;
+    margin-top: 5vh;
+    text-align: center;
+} 
+
+#csv-file{
+    display: none;
+}
+
+#upload-csv{
+    background-color: #230043;
+    color: white;
+}

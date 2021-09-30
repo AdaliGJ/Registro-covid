@@ -11,6 +11,7 @@ import {LoginContext} from "./Context/LoginContext.js";
 import UserData from "./components/EmpleadosSalud/empleado-salud";
 import React, {useState,useEffect} from 'react';
 import InsertVacunas from "./components/Vacunas/vacunas";
+import ImportUsers from "./components/ImportUsers/importUsers";
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
             <Route exact path="/health-employees" component={UserData}/>
             <Route exact path="/vacunas" component={InsertVacunas}/>
             <Route exact path="/admin" component={UserTable}/>
+            <Route exact path="/import-users" component={ImportUsers}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>:
           <Switch> 
@@ -61,6 +63,7 @@ function App() {
             <Route exact path="/health-employees" component={UserData}/>
             <Route exact path="/admin" component={UserTable}/>
             <Route exact path="/vacunas" component={InsertVacunas}/>
+            <Route exact path="/import-users" component={ImportUsers}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>}
         </LoginContext.Provider>  
