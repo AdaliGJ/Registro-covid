@@ -2,7 +2,7 @@ import React,  {Component} from 'react';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import {Container} from '@material-ui/core';
-import './elementos.css'
+import './elementos.scss';
 
 class DescImagen extends Component{
     render(){

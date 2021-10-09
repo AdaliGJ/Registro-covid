@@ -14,7 +14,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import axios from 'axios';
 import { LoginContext } from '../../Context/LoginContext.js';
-import './userTable.css';
+import './userTable.scss';
 
 
 class UserTable extends React.Component{
@@ -61,7 +61,7 @@ class UserTable extends React.Component{
             console.log(response);
         });
         console.log(this.state.dPI);
-        console.log(this.state.full_name);
+        console.log(this.state.full_name); 
         console.log(this.state.nacionalidad);
         console.log(this.state.fecha_nacimiento);
         console.log(this.state.sexo);

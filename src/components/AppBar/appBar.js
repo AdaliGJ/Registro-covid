@@ -10,7 +10,7 @@ import {useHistory} from "react-router-dom";
 import HealingIcon from '@material-ui/icons/Healing';
 import { LoginContext } from '../../Context/LoginContext';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import './appBar.css'
+import './appBar.scss'
 
  function MenuBar() {
      const history = useHistory();

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './users.css'
+import './users.scss'
 import MenuBar from '../AppBar/appBar';
 import axios from 'axios';
 import Table from '@material-ui/core/Table';

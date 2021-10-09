@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import  Tab  from "@material-ui/core/Tab";
 import { TabContext, TabList, TabPanel } from '@material-ui/lab';
 import Box from '@material-ui/core/Box';
+import './elementos.scss';
 
 class TabsImg extends Component{
     constructor(props){

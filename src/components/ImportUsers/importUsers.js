@@ -4,7 +4,7 @@ import {LoginContext} from "../../Context/LoginContext.js";
 import Footer from '../Footer/footer.js';
 import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
-import './importUser.css';
+import './importUser.scss';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
@@ -30,7 +30,7 @@ class ImportUsers extends React.Component{
         }else{
             this.setState({csv: ''});
         }
-    }
+    } 
 
     submitData=()=>{
         const url = 'http://localhost/scripts/import_users.php';

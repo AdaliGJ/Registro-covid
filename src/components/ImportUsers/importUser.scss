@@ -1,10 +1,15 @@
+$verde: #0ab200;
+$morado: #230043;
+$blanco: #ffffff;
+$gris: #120e15;
+
 .import-page{
     min-height: 100vh;
     height: max-content;
     padding-left: auto;
     padding-right: auto;
-    background: #120e15;
-    background: linear-gradient(90deg, #120e15 0%, #230043 35%, #120e15 100%);
+    background: $gris;
+    background: linear-gradient(90deg, $gris 0%, $morado 35%, $gris 100%);
     margin-bottom: 0;
 }
 
@@ -21,6 +26,6 @@
 }
 
 #upload-csv{
-    background-color: #230043;
-    color: white;
+    background-color: $morado;
+    color: $blanco;
 }

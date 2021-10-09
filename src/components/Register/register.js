@@ -2,7 +2,7 @@ import React, {useState, useRef, useContext} from 'react';
 import {LoginContext} from "../../Context/LoginContext.js";
 import { Link, useHistory} from "react-router-dom";
 import axios from 'axios';
-import './register.css'
+import './register.scss'
 import Alert from '@material-ui/lab/Alert';
 import Card from '@material-ui/core/Card';
 import InputLabel from '@material-ui/core/InputLabel';

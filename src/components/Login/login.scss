@@ -1,11 +1,16 @@
+$verde: #0ab200;
+$morado: #230043;
+$blanco: #ffffff;
+$gris: #120e15;
+
 .login{
     position: absolute;
     top: 0%;
     left: 0%;
     height: 100%;
     width: 100%;
-    background: #120e15;
-    background: linear-gradient(90deg, #120e15 0%, #230043 35%, #120e15 100%);
+    background: $gris;
+    background: linear-gradient(90deg, $gris 0%, $morado 35%, $gris 100%);
 }
 
 .login_form{
@@ -31,20 +36,20 @@
 }
 
 #enviar{
-    background-color: #0ab200;
-    color: #ffff;
+    background-color: $verde;
+    color: $blanco;
     width: 40vw;
     margin-top: 5%;
 }
 
 .login a{
     text-decoration: none;
-    color: #230043;
+    color: $morado;
 }
 
 a:hover{
     text-decoration: none;
-    color: #0ab200;
+    color: $verde;
 }
 
 #noerror{

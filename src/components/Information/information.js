@@ -9,7 +9,7 @@ import DescImagen from '../ElementosPortal/img-descripcion';
 import TabsImg from '../ElementosPortal/tabs';
 import ImgCarousel from '../ElementosPortal/carrusel';
 import {SliderData} from '../ElementosPortal/carrusel';
-import './information.css';
+import './information.scss';
 
 class Information extends React.Component{
 

@@ -1,5 +1,10 @@
+$verde: #0ab200;
+$morado: #230043;
+$blanco: #ffffff;
+$gris: #120e15;
+
 #icon{
-    color: #0ab200;
+    color: $verde;
 }
 
 #appbar_button{
@@ -8,13 +13,13 @@
     margin-left: auto;
     border-style: solid;
     border-width: 0.5px;
-    border-color: #230043;
+    border-color: $morado;
     float: none;
 }
 
 #appbar{
-    color: #fff;
-    background-color: #120e15;
+    color: $blanco;
+    background-color: $gris;
     overflow-x: scroll;
 }
 
@@ -23,9 +28,9 @@
   }
 
 #info_button, #home_button,  #news_button, #contact_button, #siout, #nolog{
-    color: #0ab200;
+    color: $verde;
     background-color: transparent;
-    border-color: #230043;
+    border-color: $morado;
     font-size: 11px;
 }
 

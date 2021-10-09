@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import CardActions from '@material-ui/core/CardActions';
 import Footer from '../Footer/footer.js';
-import './information.css'
+import './information.scss'
 
 
 class Contact extends React.Component{

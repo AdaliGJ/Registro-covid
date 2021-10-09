@@ -1,14 +1,19 @@
+$verde: #0ab200;
+$morado: #230043;
+$blanco: #ffffff;
+$gris: #120e15;
+
+
 .texto{
     width: 90vw;
     margin-top: 3vh;
     margin-bottom: 3vh;
     margin-left: 3vw;
     margin-right: 0vw;
-   /* display: flex;*/
     text-align: justify;
     align-content: center;
     height: max-content;
-    border-color: #23004369;
+    border-color: $morado;
     border-style:groove;
     border-width: 0.05px;
     
@@ -32,7 +37,7 @@
 }
 
 .image-container{
-    border: #0ab200;
+    border: $verde;
     border-style: solid;
 }
 
@@ -123,32 +128,27 @@
     position: relative;
   }
   
-  .right-arrow{
+  /*mixin implementado*/
+  @mixin arrow($left){
     position: absolute;
     top: 50%;
-    left: 83vw;
+    left: $left;
     font-size: 3rem;
-    color: #0ab200;
+    color: $verde;
     z-index: 10;
     cursor: pointer;
     user-select: none;
-    background-color: #120e15;
+    background-color: $gris;
     padding: 1vw;
     border-radius: 50%;
   }
+
+  .right-arrow{
+    @include arrow(83vw);
+  }
   
   .left-arrow {
-    position: absolute;
-    top: 50%;
-    left: 3vw;
-    font-size: 3rem;
-    color: #0ab200;
-    z-index: 10;
-    cursor: pointer;
-    user-select: none;
-    background-color: #120e15;
-    padding: 1vw;
-    border-radius: 50%;
+    @include arrow(2vw);
   }
   
   .slide {

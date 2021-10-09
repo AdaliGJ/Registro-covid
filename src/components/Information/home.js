@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import './information.css'
+import './information.scss'
 import MenuBar from "../AppBar/appBar.js";
 import {LoginContext} from "../../Context/LoginContext.js";
 import Footer from '../Footer/footer.js';

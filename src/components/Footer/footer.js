@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './footer.css';
+import './footer.scss';
 import {Container} from '@material-ui/core';
 import  {Grid}  from '@material-ui/core';
 import  {Box}  from '@material-ui/core';

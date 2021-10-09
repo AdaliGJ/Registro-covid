@@ -9,7 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Footer from '../Footer/footer.js';
 import Alert from '@material-ui/lab/Alert';
 import axios from 'axios';
-import './vacunas.css'
+import './vacunas.scss'
 
 
 class InsertVacunas extends React.Component{

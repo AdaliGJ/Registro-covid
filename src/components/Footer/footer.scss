@@ -1,23 +1,29 @@
+$verde: #0ab200;
+$morado: #230043;
+$blanco: #ffffff;
+$gris: #120e15;
+
+
 .footer{
     position: relative;
     bottom: 0;
     margin-right: 0vw;
     margin-left: auto;
-    background-color: #120e15;
-    color: white;
+    background-color: $gris;
+    color: $blanco;
     height: max-content;
     padding-top: 2vw;
     margin-top: 2vh;
 }
 
 .footer a{
-    color:white;
+    color:$blanco;
     text-decoration: none;
     line-height: 1.6;
 }
 
 a:hover{
-    color:#0ab200;
+    color:$verde;
 }
 .nofoot{
     display: none;

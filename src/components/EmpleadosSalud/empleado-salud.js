@@ -14,7 +14,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import axios from 'axios';
 import { LoginContext } from '../../Context/LoginContext.js';
-import './empleado-salud.css';
+import './empleado-salud.scss';
 
 class VacunaAplicada extends Component{
     render(){

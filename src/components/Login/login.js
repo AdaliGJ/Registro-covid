@@ -3,7 +3,7 @@ import {LoginContext} from "../../Context/LoginContext.js";
 import { Link, useHistory} from "react-router-dom";
 import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
-import './login.css'
+import './login.scss'
 /*import './../../App.css'*/
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
