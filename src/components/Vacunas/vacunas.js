@@ -9,6 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Footer from '../Footer/footer.js';
 import Alert from '@material-ui/lab/Alert';
 import axios from 'axios';
+import VacunasTabla from './vacunas-table.js';
 import './vacunas.scss'
 
 
@@ -20,10 +21,12 @@ class InsertVacunas extends React.Component{
             laboratorio: '',
             dosis: '',
             dias: '',
-            exito: false
+            exito: false,
+            vacunas: []
         }
 
         this.mySubmit=this.mySubmit.bind(this);
+        this.getVacunas=this.getVacunas.bind(this);
     }
 
     mySubmit(){
@@ -54,6 +57,23 @@ class InsertVacunas extends React.Component{
             dosis: '',
             dias: '',
         });
+
+        this.getVacunas();
+    }
+
+    getVacunas=()=>{
+        const url = 'http://localhost/scripts/catalogo_vacunas.php';
+
+        axios.get(url).then(response => response.data)
+             .then((data) => {
+                this.setState({vacunas: data})
+                console.log(this.state.vacunas)
+        });
+    }
+
+    componentDidMount(){
+        this.getVacunas();
+        
     }
 
 
@@ -86,6 +106,7 @@ class InsertVacunas extends React.Component{
                 <CardActions>
                     <Button id="sendVacuna" variant="contained" onClick={this.mySubmit}>Agregar Vacuna</Button>
                 </CardActions>
+                <VacunasTabla vacunas={this.state.vacunas} />
                 </Card>
                 <Footer/>
             </div>

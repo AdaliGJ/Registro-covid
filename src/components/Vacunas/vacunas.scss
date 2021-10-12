@@ -53,3 +53,33 @@ $gris: #120e15;
 .vacunas-data{
     margin-left: 3vw;
 }
+
+
+/*Tabla*/
+
+
+h1{
+    margin-left: 5vw;
+}
+
+.table-header{
+    background-color: $morado;
+}
+
+
+.vaccine_table{
+    padding: auto;
+
+}
+
+
+.container{
+    margin-right: 5vw;
+    margin-left: 4vw;
+    overflow-x: auto;
+    width: 90%; 
+}
+
+.customized-table{
+    width: 90%;
+}
