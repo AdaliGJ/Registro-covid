@@ -1,3 +1,8 @@
+$verde: #0ab200;
+$morado: #230043;
+$blanco: #ffffff;
+$gris: #120e15;
+
 .page{
     min-height: 90vh;
     padding-left: auto;
@@ -10,18 +15,18 @@
     left: 0%;
     height: 100%;
     width: 100%;
-    background: #120e15;
-    background: linear-gradient(90deg, #120e15 0%, #230043 35%, #120e15 100%);
+    background: $gris;
+    background: linear-gradient(90deg, $gris 0%, $morado 35%, $gris 100%);
 }
 
 .contact_form{
-    color: #230043;
+    color: $morado;
     height: 80vh;
     width: 80vw;
     margin: auto;
     margin-top: 5vh;
     text-align: center;
-    border-color: #230043;
+    border-color: $morado;
     border-style: solid;
     border-width: 1px;
 
@@ -36,8 +41,8 @@
 }
 
 #send{
-    background-color: #0ab200;
-    color: #ffff;
+    background-color: $verde;
+    color: $blanco;
     width: 40vw;
     margin: 2% auto;
 }
@@ -47,9 +52,16 @@
     justify-content: center;
 }
 
-hr{
+h1{
     margin: 1vw;
 }
+
+#titulo{
+    display: flex;
+}
+
+
+
 
 
 

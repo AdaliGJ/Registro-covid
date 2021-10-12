@@ -1,7 +1,7 @@
 import React,  {Component} from 'react';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import {ButtonGroup, Container} from '@material-ui/core';
+import {ButtonGroup, Container, Button} from '@material-ui/core';
 import { Edit, Delete } from '@material-ui/icons';
 import { LoginContext } from '../../Context/LoginContext';
 import './elementos.scss';
@@ -37,8 +37,8 @@ class DescImagen extends Component{
                         </Typography>
                         
                     </Container>
-                    <ButtonGroup id={this.props.usuario==3? 'editID' : 'noeditID'}> {this.props.edit}
-                        <Delete id={this.props.usuario==3? 'delete' : 'nodelete'}/></ButtonGroup> 
+                    <div id={this.props.usuario==3? 'editID' : 'noeditID'}> {this.props.edit}
+                    <Button onClick={this.props.delete} id="deleteID"><Delete/></Button></div> 
                 </Card>
         );
     }

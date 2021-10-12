@@ -7,9 +7,11 @@ import DescImagen from '../ElementosPortal/img-descripcion';
 import axios from 'axios';
 import InsertTextoLado from '../Modals/texto-lado-modal.js';
 import InsertImgDesc from '../Modals/texto-desc-modal.js';
+import InsertTexto from '../Modals/html-modal.js';
 import { Edit, Delete } from '@material-ui/icons';
-import { ButtonGroup } from '@material-ui/core';
+import UpdateTitulo from '../Modals/titulo-modal.js';
 import './information.scss';
+import { Button } from '@material-ui/core';
 
 class News extends Component {
     
@@ -37,17 +39,32 @@ class News extends Component {
                 img: '',
                 texto:'',
                 id: null 
-             }
+             },
+            formText:{
+                texto:'',
+                id: null 
+            }
         };
         this.sumbitTL=this.sumbitTL.bind(this);
         this.updateTL=this.updateTL.bind(this);
         this.editTextoLado=this.editTextoLado.bind(this);
         this.getTextoLado=this.getTextoLado.bind(this);
+        this.deleteLado=this.deleteLado.bind(this);
 
         this.getImagenDesc=this.getImagenDesc.bind(this);
         this.updateID=this.updateID.bind(this);
         this.submitID=this.submitID.bind(this);
         this.editImgDesc=this.editImgDesc.bind(this);
+        this.deleteID=this.deleteID.bind(this);
+
+        this.getTexto=this.getTexto.bind(this);
+        this.updateText=this.updateText.bind(this);
+        this.editTexto=this.editTexto.bind(this);
+        this.submitTexto=this.submitTexto.bind(this);
+
+        this.editTitulo=this.editTitulo.bind(this);
+        this.getTitulo=this.getTitulo.bind(this);
+        this.updateTitulo=this.updateTitulo.bind(this);
     }
 
     sumbitTL=(imagen, texto_p, derecha_p)=>{
@@ -94,6 +111,25 @@ class News extends Component {
     
     }  
 
+    submitTexto=(texto_p)=>{
+        console.log(texto_p);
+        const url = 'http://localhost/scripts/texto_html.php';
+        let formData = new FormData();
+        
+        formData.append('texto', texto_p);
+          
+        axios.post(url, formData)
+            .then(response=> {
+                console.log(response);
+                this.getTexto();
+            })
+            .catch(function (response) {
+                console.log(response);
+            });
+    
+    } 
+
+
     updateTL=(imagen, texto_p, derecha_p, img_name)=>{
         const url = 'http://localhost/scripts/texto_lado2.php';
         let formData = new FormData();
@@ -136,7 +172,44 @@ class News extends Component {
                 console.log(response);
             });
 
-        //this.getTextoLado(); 
+    }
+
+    updateText=(texto_p)=>{
+        const url = 'http://localhost/scripts/texto_html2.php';
+        let formData = new FormData();
+        
+          formData.append('id', this.state.formText.id);
+          formData.append('texto', texto_p);
+
+        axios.post(url, formData)
+            .then(response=> {
+                console.log(response);
+                console.log(this.state.formImgDesc.id);
+                this.getTexto();
+            })
+            .catch(function (response) {
+                console.log(response);
+            });
+
+    }
+
+    updateTitulo=(texto_p)=>{
+        const url = 'http://localhost/scripts/titulo.php';
+        let formData = new FormData();
+        
+          formData.append('id', this.state.formText.id);
+          formData.append('texto', texto_p);
+
+        axios.post(url, formData)
+            .then(response=> {
+                console.log(response);
+                console.log(this.state.formImgDesc.id);
+                this.getTitulo();
+            })
+            .catch(function (response) {
+                console.log(response);
+            });
+
     }
     
     getTextoLado=()=>{
@@ -155,6 +228,24 @@ class News extends Component {
              .then((data) => {
                 this.setState({img_desc: data})
                 console.log(this.state.img_desc)
+        });
+    }
+
+    getTexto=()=>{
+        const url2 = 'http://localhost/scripts/texto_html.php';
+        axios.get(url2).then(response => response.data)
+             .then((data) => {
+                this.setState({texto: data})
+                console.log(this.state.texto)
+        });
+    }
+
+    getTitulo=()=>{
+        const url3 = 'http://localhost/scripts/titulo.php';
+        axios.get(url3).then(response => response.data)
+             .then((data) => {
+                this.setState({titulos: data})
+                console.log(this.state.titulos)
         });
     }
 
@@ -178,11 +269,63 @@ class News extends Component {
              archivo: texto_img.archivo,
              img: texto_img.imagen,
              texto: texto_img.descripcion,
-             openModal: true,
              id: texto_img.id_imagen_desc
             }
         })
         console.log(texto_img);
+     }
+
+     editTexto=(texto)=>{
+        this.setState({
+            formText:{
+             texto: texto.texto,
+             id: texto.id_titulo
+            }
+        })
+        console.log(texto);
+     }
+
+     editTitulo=(titulo)=>{
+        this.setState({
+            formText:{
+             texto: titulo.texto,
+             id: titulo.id_titulo
+            }
+        })
+        console.log(titulo);
+     }
+
+     deleteLado=(texto)=>{
+        const url = 'http://localhost/scripts/texto_lado2.php';
+        axios.get(url, {params:{id: texto.id_imagen_texto}}).then(response => response.data)
+             .then((data) => {
+                console.log(data);
+                console.log(texto.id_imagen_texto);
+                this.getTextoLado();
+        });
+
+     }
+
+     deleteID=(img_p)=>{
+        const url = 'http://localhost/scripts/img_desc2.php';
+
+        axios.get(url, {params:{id: img_p.id_imagen_desc}}).then(response => response.data)
+        .then((data) => {
+           console.log(data);
+           console.log(img_p.id_imagen_desc);
+           this.getImagenDesc();
+        });
+     }
+
+     deleteTexto=(texto)=>{
+        const url = 'http://localhost/scripts/texto_html2.php';
+
+        axios.get(url, {params:{id: texto.id_titulo}}).then(response => response.data)
+        .then((data) => {
+           console.log(data);
+           console.log(texto.id_imagen_desc);
+           this.getTexto();
+        });
      }
       
     componentDidMount(){
@@ -194,19 +337,9 @@ class News extends Component {
 
         this.getImagenDesc();
         
-        const url2 = 'http://localhost/scripts/texto_html.php';
-        axios.get(url2).then(response => response.data)
-             .then((data) => {
-                this.setState({texto: data})
-                console.log(this.state.texto)
-        });
+        this.getTexto();
 
-        const url3 = 'http://localhost/scripts/titulo.php';
-        axios.get(url3).then(response => response.data)
-             .then((data) => {
-                this.setState({titulos: data})
-                console.log(this.state.titulos)
-        });
+        this.getTitulo();
 
         this.getTextoLado();
         
@@ -217,21 +350,25 @@ class News extends Component {
                 <div className="page">
                     <MenuBar/>
                     <h3>Welcome, {this.state.dpi_usuario}</h3>
-                    <ButtonGroup>
-                        <InsertTextoLado submit={this.sumbitTL} datos={this.state.formTextoLado} titulo='Agregar texto-lado' /*lado={null}*//>
-                        <InsertImgDesc submit={this.submitID} datos={this.state.formImgDesc} titulo='Agregar imagen-descripcion' /*lado={null}*//> 
-                    </ButtonGroup>
+                    <div style={{display: 'flex', alignContent:'space-between'}}>
+                        <InsertTextoLado submit={this.sumbitTL} datos={this.state.formTextoLado} titulo='Agregar texto-lado' />
+                        <InsertImgDesc submit={this.submitID} datos={this.state.formImgDesc} titulo='Agregar imagen-descripcion' /> 
+                        <InsertTexto submit={this.submitTexto} datos={this.state.formText} titulo='Agregar Texto' />
+                    </div>
                     {this.state.titulos.map((titulo)=>(
-                        <h1 key={titulo.id_titulo + ' 3'}>{titulo.texto}</h1>
+                        <div key={titulo.id_titulo + ' 3'} id="titulo">
+                            <h1>{titulo.texto}</h1>
+                            <p id="edit-titulo"><UpdateTitulo datos={{texto: titulo.texto}} submit={this.updateTitulo} titulo={<Edit onClick={()=>this.editTexto(titulo)}/>}/></p>
+                        </div>
                     ))}
                     {this.state.img_desc.map((imagen)=>(
-                        <DescImagen key={imagen.id_imagen_desc + ' 1'} img= {this.state.baseURL+imagen.imagen} texto={imagen.descripcion} usuario={this.state.usuario_tipo} edit={<InsertImgDesc submit={this.updateID} datos={{texto: imagen.descripcion, img: imagen.imagen}} titulo={<Edit onClick={()=>this.editImgDesc(imagen)}/>} comp={true}/>}/>
+                        <DescImagen key={imagen.id_imagen_desc + ' 1'} img= {this.state.baseURL+imagen.imagen} texto={imagen.descripcion} usuario={this.state.usuario_tipo} delete={()=>this.deleteID(imagen)}  edit={<InsertImgDesc submit={this.updateID} datos={{texto: imagen.descripcion, img: imagen.imagen}} titulo={<Edit onClick={()=>this.editImgDesc(imagen)}/>} comp={true}/>}/>
                     ))}
                     {this.state.texto.map((text)=>(
-                        <DescImagen key={text.id_titulo + ' 2'} texto={text.texto} />
+                        <DescImagen key={text.id_titulo + ' 2'} texto={text.texto} usuario={this.state.usuario_tipo} delete={()=>this.deleteTexto(text)} edit={<InsertTexto submit={this.updateText} datos={{texto: text.texto}} titulo={<Edit onClick={()=>this.editTexto(text)}/>} comp={true}/>}/>
                     ))}
                     {this.state.texto_lado.map((lado)=>(
-                        <TextoLado key={lado.id_imagen_texto+' 4'} derecha={lado.derecha} texto={lado.texto} img={this.state.baseURL+lado.imagen} usuario={this.state.usuario_tipo} edit={<InsertTextoLado submit={this.updateTL} datos={{openModal: false, texto: lado.texto, img: lado.imagen, derecha: lado.derecha}} titulo={<Edit onClick={()=>this.editTextoLado(lado)}/>} lado={true}/>} />
+                        <TextoLado key={lado.id_imagen_texto+' 4'} derecha={lado.derecha} texto={lado.texto} img={this.state.baseURL+lado.imagen} usuario={this.state.usuario_tipo} delete={()=>this.deleteLado(lado)} edit={<InsertTextoLado submit={this.updateTL} datos={{openModal: false, texto: lado.texto, img: lado.imagen, derecha: lado.derecha}} titulo={<Edit onClick={()=>this.editTextoLado(lado)}/>} lado={true}/>} />
                     ))}
                    
                     

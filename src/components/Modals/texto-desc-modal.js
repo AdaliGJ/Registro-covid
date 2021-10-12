@@ -4,10 +4,6 @@ import Button from '@material-ui/core/Button';
 import  Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
 import { Grid } from '@material-ui/core';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import { LoginContext } from '../../Context/LoginContext';
 import axios from 'axios';
 import './modal.scss';
@@ -30,6 +26,7 @@ class InsertImgDesc extends React.Component {
       this.cancel=this.cancel.bind(this);
       this.handleChange=this.handleChange.bind(this);
       this.addChanges=this.addChanges.bind(this);
+      this.updateChanges=this.updateChanges.bind(this);
   }
   
   handleOpen=(e)=>{

@@ -30,22 +30,27 @@ $gris: #120e15;
 #derecha, .modalfield{
     width: 100%;
 }
-#agregar, #actualizar, #agregarID, #actualizarID{
+#agregar, #actualizar, #agregarID, #actualizarID, #agregarText, #actualizarText{
     background-color: $verde;
     color: $blanco;
     margin-right: 2vw;
 }
 
-#cancelar, #cancelarID{
+#cancelar, #cancelarID, #cancelarText{
     background-color: $morado;
     color: $blanco;
 }
 
-#notexto-lado{
+#notexto-lado, #notexto-desc, #notexto, #notitulo{
     display: none;
 }
 
-#boton-modal-lado, #boton-modal-desc{
+#boton-modal-lado, #boton-modal-desc, #boton-modal-text{
     background-color: $verde;
     color: $blanco;
+    margin: 1vw;
+}
+
+#editID{
+    display: flex;
 }

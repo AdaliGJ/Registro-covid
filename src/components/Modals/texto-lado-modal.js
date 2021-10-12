@@ -25,12 +25,12 @@ class InsertTextoLado extends React.Component {
           texto: this.props.datos.texto,
           derecha: this.props.datos.derecha,
           usuario: null
-          
       }
       this.handleOpen=this.handleOpen.bind(this);
       this.cancel=this.cancel.bind(this);
       this.handleChange=this.handleChange.bind(this);
       this.addChanges=this.addChanges.bind(this);
+      this.updateChanges=this.updateChanges.bind(this);
   }
   
   handleOpen=(e)=>{

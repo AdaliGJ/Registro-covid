@@ -176,6 +176,8 @@ h1{
 #edit, #editID{
       color:$verde;
       margin-right: 2vw;
+      display: flex;
+      
   }
 
 #nodelete, #nodeleteID{
@@ -187,5 +189,11 @@ h1{
 }
 
 #delete, #deleteID{
-      color:$morado;
+    background-color: $morado;
+    color: $blanco;
+    height: 5.5vh;
+    margin-top: 2vh;
+    margin-bottom: 1vh;
   }
+
+
