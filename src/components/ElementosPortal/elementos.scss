@@ -4,6 +4,10 @@ $blanco: #ffffff;
 $gris: #120e15;
 
 
+h1{
+    margin-left: 2vw
+}
+
 .texto{
     width: 90vw;
     margin-top: 3vh;
@@ -159,4 +163,29 @@ $gris: #120e15;
   .slide-active {
     opacity: 1;
     transition-duration: 1s;
+  }
+
+  #noedit, #noeditID{
+    display: none;
+  }
+
+#edit:hover{
+    cursor: pointer;
+}
+
+#edit, #editID{
+      color:$verde;
+      margin-right: 2vw;
+  }
+
+#nodelete, #nodeleteID{
+    display: none;
+  }
+
+#delete:hover{
+    cursor: pointer;
+}
+
+#delete, #deleteID{
+      color:$morado;
   }

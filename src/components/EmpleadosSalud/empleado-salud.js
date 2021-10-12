@@ -133,7 +133,7 @@ class UserData extends React.Component{
 
         let formData = new FormData();
         var options = {content: formData[0]};
-        formData.set('dpi_usuario', this.state.dPI);
+        formData.append('dpi_usuario', this.state.dPI);//set
         formData.append('fecha_primera_dosis', this.state.primera_dosis);
         formData.append('fecha_segunda_dosis', this.state.segunda_dosis);
         formData.append('fecha_tercera_dosis', this.state.tercera_dosis);

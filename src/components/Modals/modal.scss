@@ -1,0 +1,51 @@
+$verde: #0ab200;
+$morado: #230043;
+$blanco: #ffffff;
+$gris: #120e15;
+
+
+
+.box{
+    position: 'absolute';
+    margin: auto;
+    margin-top: 10vh;
+    width: 60vw;
+    background-color: $blanco;
+    border: '2px solid' $gris;
+    box-shadow: 24;
+    padding: 3vw;
+}
+
+#img-file{
+    display: none;
+ 
+}
+
+#upload-img, #upload-img-desc{
+    background-color: $morado;
+    color: $blanco;
+    width: 100%;
+}
+
+#derecha, .modalfield{
+    width: 100%;
+}
+#agregar, #actualizar, #agregarID, #actualizarID{
+    background-color: $verde;
+    color: $blanco;
+    margin-right: 2vw;
+}
+
+#cancelar, #cancelarID{
+    background-color: $morado;
+    color: $blanco;
+}
+
+#notexto-lado{
+    display: none;
+}
+
+#boton-modal-lado, #boton-modal-desc{
+    background-color: $verde;
+    color: $blanco;
+}

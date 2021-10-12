@@ -1,0 +1,72 @@
+$verde: #0ab200;
+$morado: #230043;
+$blanco: #ffffff;
+$gris: #120e15;
+
+.data{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    min-height: 100vh;
+    height: max-content;
+    width: 100%;
+    background: $gris;
+    background: linear-gradient(90deg, $gris 0%, $morado 35%, $gris 100%);
+    text-align: center;
+}
+
+
+.data_form {
+    color: $morado;
+    height: max-content;
+    width: 80vw;
+    margin: auto;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    text-align: center;
+    border-color: $morado;
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+}
+
+.profile-data{
+    width: 77vw;
+    align-content: center;
+}
+
+.data_form .outlined-required{
+    width: 34vw;
+}
+
+#genero{
+    width: 8vw;
+}
+
+.data_form .outlined-required3{
+    width: 29vw;
+}
+
+.outlined-short{
+    width: 34vw;
+}
+
+#send{
+    background-color: $verde;
+    color: $blanco;
+    width: 40vw;
+    margin: 2% auto;
+}
+
+.text-together{
+    display: flex;
+    justify-content: center;
+}
+
+hr{
+    margin: 1vw;
+}
+
+#centro{
+    width: 70vw;
+}
