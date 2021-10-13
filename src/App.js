@@ -14,6 +14,7 @@ import InsertVacunas from "./components/Vacunas/vacunas";
 import ImportUsers from "./components/ImportUsers/importUsers";
 import Profile from "./components/Profile/profile";
 import Habilitar from "./components/Habilitar/habilitar";
+import Solicitudes from "./components/SolicitudesEmp/solicitudesemp";
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
             <Route exact path="/import-users" component={ImportUsers}/>
             <Route exact path='/mi-cuenta' component={Profile}/>
             <Route exact path='/habilitar-poblacion' component={Habilitar}/>
+            <Route exact path='/solicitudes' component={Solicitudes}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>:
           <Switch> 

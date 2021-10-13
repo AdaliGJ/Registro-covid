@@ -1,0 +1,34 @@
+$verde: #0ab200;
+$morado: #230043;
+$blanco: #ffffff;
+$gris: #120e15;
+
+.solicitud_table{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    background: $gris;
+    background: linear-gradient(90deg, $gris 0%, $morado 35%, $gris 100%);
+}
+
+.container{
+    margin-top: 10vh;
+    background-color: white;
+    padding: 1vw;
+}
+
+.table-header-emp{
+    background-color: $gris;
+}
+
+#aprobar{
+    background-color: $verde;
+    color: $blanco;
+}
+
+#rechazar{
+    background-color: $morado;
+    color: $blanco;
+}
