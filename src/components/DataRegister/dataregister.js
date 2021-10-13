@@ -12,7 +12,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import axios from 'axios';
 import { LoginContext } from '../../Context/LoginContext.js';
+import { Alert } from '@material-ui/lab';
 import './dataregister.scss'
+import { Link } from 'react-router-dom';
 
 
 class DataRegister extends React.Component{
@@ -34,7 +36,8 @@ class DataRegister extends React.Component{
             trabajo: '',
             centro_vacunacion: null,
             centros: [],
-            userinfo: []
+            userinfo: [], 
+            exito: false
         }
 
         this.mySubmit=this.mySubmit.bind(this);
@@ -61,11 +64,31 @@ class DataRegister extends React.Component{
         formData.append('centro', this.state.centro_vacunacion);
 
         axios.post(url, formData)
-        .then(function (response) {
+        .then((response)=> {
+            this.setState({
+                exito: true
+            });
+            this.setState({
+                dpi: null,
+                full_name: '',
+                nacionalidad: '',
+                email1: '',
+                email2: '',
+                tel1: '',
+                tel2: '',
+                fecha_nacimiento: '',
+                sexo: '',
+                enfermedad: '',
+                trabajo: '',
+                centro_vacunacion: null,
+            });
             console.log(response);
         })
-        .catch(function (response) {
+        .catch((response)=>{
             console.log(response);
+            this.setState({
+                exito: false
+            });
         });
         console.log(this.state.centro_vacunacion);
     }
@@ -81,8 +104,8 @@ class DataRegister extends React.Component{
 
         axios.get(url).then(response => response.data)
              .then((data) => {
-                this.setState({centros: data})
-                console.log(this.state.centros)
+                this.setState({centros: data});
+                console.log(this.state.centros);
         });
 
         const url2 = 'http://localhost/scripts/datos_persona.php';
@@ -98,7 +121,7 @@ class DataRegister extends React.Component{
                 tel2: this.state.userinfo.tel2,
                 fecha_nacimiento: this.state.userinfo.fecha_nacimiento,
                 sexo: this.state.userinfo.genero,
-                enfermedad: false,
+                enfermedad: this.state.userinfo.enfermedad,
                 trabajo: this.state.userinfo.profesion,
             });
             context.setTipoUsuario(this.state.userinfo.tipo_usuario);
@@ -170,11 +193,14 @@ class DataRegister extends React.Component{
                                 </Select>
                             </FormControl>      
                         </Grid>
+                         
+                        <Alert severity="success" id={this.state.exito ? "data_success": "no_data_success"}>Usuario Ingresado Exitosamente ir a <Link to="/home">Inicio</Link></Alert>
+                       
                     </Grid>
                     </div>
                 </CardContent>
                 <CardActions className="action">
-                    <Button id="send" variant="contained" onClick={this.register}>Registrar mis datos</Button>
+                    <Button id={this.state.exito?"nosend":"send"} variant="contained" onClick={this.register}>Registrar mis datos</Button>
                 </CardActions>
                 </Card>
             </div>
