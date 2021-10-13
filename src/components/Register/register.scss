@@ -23,7 +23,7 @@ $gris: #120e15;
 }
 
 .content-register{
-    margin-left: 4vw;
+    margin-left: 2vw;
     text-align: center;
     margin-right: 0px;
 }
@@ -58,5 +58,13 @@ a:hover{
 }
 
 #noerror{
+    display: none;
+}
+
+#standard-admin{
+    margin-top: 4vh;
+}
+
+#no_mensaje_emp{
     display: none;
 }

@@ -27,12 +27,13 @@ function Register(){
     const[admin, setAdmin]=useState(false);
     const[mensaje, setMensaje]=useState(''); 
     const[userType, setUserType]=useState(null);
+    const[password_admin, setPassword_admin]=useState('');
 
 
     const usuarioRef = useRef(null);
     const contRef = useRef(null);
     const cont2Ref = useRef(null);
-    const tipoUsuario = useRef(null);
+    const adminpassword = useRef('');
 
 
     const history = useHistory();
@@ -51,7 +52,9 @@ function Register(){
         formData.append('dpi_usuario', usuarioRef.current.value);
         formData.append('clave', contRef.current.value);
         formData.append('tipo_usuario', userType);
-        
+        if(userType==3){
+            formData.append('pass', adminpassword.current.value);
+        }
 
         if(contRef.current.value===cont2Ref.current.value){
         axios.post(url, formData)
@@ -123,6 +126,18 @@ function Register(){
                                 <MenuItem value={1}>Usuario</MenuItem>
                             </Select>
                         </FormControl>
+                  </Grid>
+                  <Grid item id="standard-admin">
+                        {userType == 3 ?
+                            <TextField className="standard-basic" label="Contraseña Administrador" type="password"  InputProps={{
+                                startAdornment: (
+                                <InputAdornment position="start">
+                                    <LockIcon/>
+                                </InputAdornment>
+                                ),
+                            }} inputRef={adminpassword}/>
+                                :<Alert severity="info" id={userType==2? "mensaje_emp": "no_mensaje_emp"}>Será registrado como usuario hasta que el administrador revise su solicitud</Alert>
+                            }
                   </Grid>
                   </div>
                 </CardContent>
