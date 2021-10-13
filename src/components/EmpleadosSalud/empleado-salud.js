@@ -74,7 +74,7 @@ class UserData extends React.Component{
     }
 
    
-    getData(){
+    getData=()=>{
         const url = 'http://localhost/scripts/users.php';
         axios.get(url, {params: {dpi_usuario: this.state.dPI}}).then(response => response.data)
          .then((data) => {
@@ -152,6 +152,7 @@ class UserData extends React.Component{
             console.log(response);
         });
 
+        this.getData();
         this.getData();
         
     }
