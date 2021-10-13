@@ -127,7 +127,7 @@ class Habilitar extends React.Component{
 
         axios.get(url).then(response => response.data)
              .then((data) => {
-                this.setState({enfermedades: data})
+                this.setState({enfermedades: data.slice(1)})
                 console.log(this.state.enfermedades)
         });
     }

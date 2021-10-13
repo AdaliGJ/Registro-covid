@@ -8,6 +8,7 @@ import './importUser.scss';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+import AgregarP from '../AgregarPoblacion/agregarP.js';
 
 class ImportUsers extends React.Component{
     static contextType = LoginContext;
@@ -78,6 +79,7 @@ class ImportUsers extends React.Component{
                             </Grid>
                         </form>
                     </Card>
+                    <AgregarP/>
                 <Footer/>
             </div>
         );

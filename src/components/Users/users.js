@@ -9,6 +9,8 @@ import TableCell, { tableCellClasses } from '@material-ui/core/TableCell';
 import Paper from "@material-ui/core/Paper";
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import { Edit } from '@material-ui/icons';
+import { Button } from '@material-ui/core';
 
 const StyledTableCell = withStyles({
     root: {
@@ -18,7 +20,7 @@ const StyledTableCell = withStyles({
 
   const StyledTable = withStyles({
     root: {
-      width: "90vw",
+     
       overflow: 'scroll'
     }
   })(Table);
@@ -36,12 +38,13 @@ class UsersTable extends React.Component{
 
     /*13/09/2021*/
     componentDidMount(){
-        const url = 'http://localhost/scripts/users.php';
+        const url = 'http://localhost/scripts/poblacion.php';
 
         axios.get(url).then(response => response.data)
              .then((data) => {
                 this.setState({usuarios: data})
-                console.log(this.state.usuarios)
+                console.log(this.state.usuarios);
+                console.log(data);
         });
         
     }
@@ -55,41 +58,31 @@ class UsersTable extends React.Component{
     render(){
         return(
            <div className="user_table">
-                <MenuBar/>
-                <h1>Tabla de Usuarios</h1>
                 <Paper className="container">
                 <StyledTable className="customized-table">
                     <TableHead >
                     <TableRow className="table-header">
                         <StyledTableCell>DPI</StyledTableCell>
-                        <StyledTableCell align="right">Nombre</StyledTableCell>
-                        <StyledTableCell align="right">Puesto Vacunación</StyledTableCell>
-                        <StyledTableCell align="right">Vacuna</StyledTableCell>
-                        <StyledTableCell align="right">Primera dosis</StyledTableCell>
-                        <StyledTableCell align="right">Aplicada</StyledTableCell>
-                        <StyledTableCell align="right">Segunda dosis</StyledTableCell>
-                        <StyledTableCell align="right">Aplicada</StyledTableCell>
-                        <StyledTableCell align="right">Tercera dosis</StyledTableCell>
-                        <StyledTableCell align="right">Aplicada</StyledTableCell>
-                        <StyledTableCell align="right">Datos</StyledTableCell>
+                        <StyledTableCell align="right">Nombre Completo</StyledTableCell>
+                        <StyledTableCell align="right">Nacionalidad</StyledTableCell>
+                        <StyledTableCell align="right">Sexo</StyledTableCell>
+                        <StyledTableCell align="right">Enfermedad Crónica</StyledTableCell>
+                        <StyledTableCell align="right">Profesión</StyledTableCell>
+                        <StyledTableCell align="right">Seleccionar</StyledTableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
                     {this.state.usuarios.map((usuario) => (
-                        <TableRow key={usuario.dpi_usuario}>
+                        <TableRow key={usuario.dpi}>
                         <TableCell component="th" scope="row">
-                            {usuario.dpi_usuario}
+                            {usuario.dpi}
                         </TableCell>
                         <TableCell align="right">{usuario.nombre_completo}</TableCell>
-                        <TableCell align="right">{usuario.fecha_nacimiento}</TableCell>
-                        <TableCell align="right">{usuario.tipo_usuario}</TableCell>
-                        <TableCell align="right">{usuario.nombre_completo}</TableCell>
-                        <TableCell align="right">{usuario.fecha_nacimiento}</TableCell>
-                        <TableCell align="right">{usuario.tipo_usuario}</TableCell>
-                        <TableCell align="right">{usuario.nombre_completo}</TableCell>
-                        <TableCell align="right">{usuario.fecha_nacimiento}</TableCell>
-                        <TableCell align="right">{usuario.tipo_usuario}</TableCell>
-                        <TableCell align="right">{usuario.nombre_completo}</TableCell>
+                        <TableCell align="right">{usuario.nacionalidad}</TableCell>
+                        <TableCell align="right">{usuario.genero}</TableCell>
+                        <TableCell align="right">{usuario.enfermedad}</TableCell>
+                        <TableCell align="right">{usuario.trabajo}</TableCell>
+                        <TableCell align="right"><Button onClick={()=>this.props.edit(usuario.dpi)}><Edit/></Button></TableCell>
                         </TableRow>
                     ))}
                     </TableBody>

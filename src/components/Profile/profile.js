@@ -184,21 +184,21 @@ class Profile extends React.Component{
                             <TextField className="outlined-required-large" label="Fecha Primera dosis" type="date" variant="outlined" onInput={e=>this.setState({primera_dosis: e.target.value})} inputProps={{ readOnly: true, }} InputLabelProps={{shrink: true }} value={this.state.primera_dosis}/>
                             <hr/>
                             <FormControlLabel disabled control={
-                                <Checkbox change={e=>this.setState({primera_aplicada: e.target.value})} value={this.state.primera_aplicada}/>
+                                <Checkbox change={e=>this.setState({primera_aplicada: e.target.value})} checked={this.state.primera_aplicada=="1"? true:false} value={this.state.primera_aplicada}/>
                             } label='Aplicada'/>
                         </Grid>
                         <Grid item className="text-together">
                             <TextField className="outlined-required-large" label="Fecha Segunda dosis" type="date" variant="outlined" onInput={e=>this.setState({segunda_dosis: e.target.value})} inputProps={{ readOnly: true, }} InputLabelProps={{shrink: true }} value={this.state.segunda_dosis}/>
                             <hr/>
                             <FormControlLabel disabled control={
-                                <Checkbox change={e=>this.setState({segunda_aplicada: e.target.value})} checked={this.state.segunda_aplicada} value={this.state.segunda_aplicada} />
+                                <Checkbox change={e=>this.setState({segunda_aplicada: e.target.value})} checked={this.state.segunda_aplicada =="1"? true:false} value={this.state.segunda_aplicada} />
                             } label='Aplicada' inputProps={{ readOnly: true, }}/>
                         </Grid>
                         <Grid item className="text-together">
                             <TextField className="outlined-required-large" label="Fecha Tercera dosis" type="date" variant="outlined" onInput={e=>this.setState({tercera_dosis: e.target.value})} inputProps={{ readOnly: true, }} InputLabelProps={{shrink: true }} value={this.state.tercera_dosis}/>
                             <hr/>
                             <FormControlLabel disabled control={
-                                <Checkbox change={e=>this.setState({tercera_aplicada: e.target.value})} value={this.state.tercera_aplicada}/>
+                                <Checkbox change={e=>this.setState({tercera_aplicada: e.target.value})} checked={this.state.tercera_aplicada=="1"? true:false} value={this.state.tercera_aplicada}/>
                             } label='Aplicada'/>
                         </Grid>
 

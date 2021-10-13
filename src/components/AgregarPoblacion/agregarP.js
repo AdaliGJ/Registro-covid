@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
-import MenuBar from "./../AppBar/appBar.js";
 import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import CardActions from '@material-ui/core/CardActions';
-import Alert from '@material-ui/lab/Alert';
-import SearchIcon from '@material-ui/icons/Search';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import axios from 'axios';
+import Alert from '@material-ui/lab/Alert';
 import { LoginContext } from '../../Context/LoginContext.js';
-import UsersTable from '../Users/users.js';
-import './userTable.scss';
+import './agregarP.scss';
 
 
-class UserTable extends React.Component{
+class AgregarP extends React.Component{
     static contextType = LoginContext;
     
     
@@ -30,22 +27,24 @@ class UserTable extends React.Component{
             nacionalidad:'',
             fecha_nacimiento: null,
             sexo: null,
-            enfermedad: null,
-            trabajo: null,
+            enfermedad: 0,
+            trabajo: 0,
             userinfo: [],
             trabajos: [],
+            telefono: '',
+            correo: '',
             enfermedades: [],
-            es_usuario: 0
+            es_usuario: 0,
+            extito: false,
+            error: false
         }
 
         this.register=this.register.bind(this);
-        this.getData=this.getData.bind(this);
-        this.deleteData=this.deleteData.bind(this);
     }
 
 
-    register(){
-        const url = 'http://localhost/scripts/admin.php';
+    register=()=>{
+        const url = 'http://localhost/scripts/poblacion.php';
 
         let formData = new FormData();
         formData.append('dpi', this.state.dPI);
@@ -55,68 +54,36 @@ class UserTable extends React.Component{
         formData.append('sexo', this.state.sexo);
         formData.append('trabajo', this.state.trabajo);
         formData.append('enfermedad', this.state.enfermedad);
+        formData.append('telefono', this.state.telefono);
+        formData.append('correo', this.state.correo);
 
         axios.post(url, formData)
-        .then(function (response) {
+        .then((response)=>{
             console.log(response);
+            this.setState({exito: true,
+            error: false});
         })
-        .catch(function (response) {
+        .catch( (response)=> {
             console.log(response);
+            this.setState({exito: false,
+            error: true})
         });
-        console.log(this.state.dPI);
-        console.log(this.state.full_name); 
-        console.log(this.state.nacionalidad);
-        console.log(this.state.fecha_nacimiento);
-        console.log(this.state.sexo);
-        console.log(this.state.trabajo);
-    }
-
-    getData=(dpi_p)=>{
-        const url = 'http://localhost/scripts/admin.php';
-
-        axios.get(url, {params: {dpi: dpi_p}}).then(response => response.data)
-        .then((data) => {
-           this.setState({userInfo: data[0]});
-           this.setState({
-            dPI: this.state.userInfo.dpi,
-            full_name: this.state.userInfo.nombre_completo,
-            nacionalidad:this.state.userInfo.nacionalidad,
-            fecha_nacimiento: this.state.userInfo.fecha_nacimiento,
-            sexo: this.state.userInfo.genero,
-            enfermedad: this.state.userInfo.enfermedad,
-            trabajo: this.state.userInfo.trabajo,
-            es_usuario: this.state.userInfo.es_usuario
+        
+        this.setState({
+            dPI: '',
+            full_name: '',
+            nacionalidad:'',
+            fecha_nacimiento: '',
+            sexo: '',
+            enfermedad: 0,
+            trabajo: 0,
+            telefono: '',
+            correo: '',
         })
-           console.log(this.state.userInfo);
-           console.log(this.state.es_usuario);
-           console.log(this.state.enfermedad);
-        }).catch(function (response) {
-            console.log(response);
-        });
-
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "smooth"
-          });
-    }
-
-    deleteData(){
-        const url = 'http://localhost/scripts/admin2.php';
-
-        let formData = new FormData();
-        formData.append('dpi', this.state.dPI);
-
-        axios.post(url, formData)
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (response) {
-            console.log(response);
-        });
     }
 
     
+
     
     componentDidMount(){
 
@@ -144,19 +111,14 @@ class UserTable extends React.Component{
     
     render(){
         return(
-            <div className="data">
-                <MenuBar/>
+            <div className="new">
                 <Card className="data_form" mt={5}>
                 <CardContent className="content">
                     <div className="register-data">
-                    <h2>Búsqueda de Usuarios</h2>
-                    <div className="searchbar">
-                        <TextField className="outlined-required" label="DPI" type="number" variant="outlined" onInput={e=>this.setState({dPI: e.target.value})} name="dpi"/>
-                        <Button id="search1" onClick={()=>this.getData(this.state.dPI)}><SearchIcon/></Button>
-                    </div>
+                    <h2>Ingreso Manual de personas</h2>
                     <Grid container direction={"column"} spacing={3}>
                         <Grid item className="text-together">
-                            <TextField className="outlined-required" label="DPI" type="number" variant="outlined" onInput={e=>this.setState({dPI: e.target.value})} inputProps={{ readOnly: true,  }} InputLabelProps={{shrink: true }} value={this.state.dPI}/>
+                            <TextField className="outlined-required" label="DPI" type="number" variant="outlined" onInput={e=>this.setState({dPI: e.target.value})} InputLabelProps={{shrink: true }} value={this.state.dPI}/>
                             <hr/>
                             <TextField className="outlined-short" label="Nombre Completo" type="text" variant="outlined" onInput={e=>this.setState({full_name: e.target.value})}  value={this.state.full_name}/>
                         </Grid>
@@ -165,8 +127,13 @@ class UserTable extends React.Component{
                             <hr/>
                             <TextField className="outlined-required" label="Fecha de Nacimiento" type="date" variant="outlined" onChange={e=>this.setState({fecha_nacimiento: e.target.value})} value={this.state.fecha_nacimiento} InputLabelProps={{shrink: true }}/>
                         </Grid>
+                        <Grid item className="text-together">    
+                            <TextField className="outlined-required" label="Correo" type="email" variant="outlined" onInput={e=>this.setState({correo: e.target.value})}  value={this.state.correo}/>    
+                            <hr/>
+                            <TextField className="outlined-required" label="Teléfono" type="number" variant="outlined" onChange={e=>this.setState({telefono: e.target.value})} value={this.state.telefono}/>
+                        </Grid>
                         <Grid item className="text-together">
-                            <FormControl id="genero1" variant ="outlined">
+                            <FormControl id="genero2" variant ="outlined">
                                 <InputLabel>Sexo</InputLabel>
                                 <Select label="Sexo" displayEmpty onChange={e=>this.setState({sexo: e.target.value})} value={this.state.sexo}>
                                     <MenuItem value="M">M</MenuItem>
@@ -192,18 +159,20 @@ class UserTable extends React.Component{
                                 </Select>
                             </FormControl> 
                         </Grid>
+                        <Alert severity="success" id={this.state.exito? "exito_p": "no_exito_p"}>Persona Ingresada correctamente</Alert>
+                        <Alert severity="error" id={this.state.error? "error_p": "no_error_p"}>Error: no se pudo ingresar a la persona</Alert>
                     </Grid>
+                    
                     </div>
                 </CardContent>
                 <CardActions className="action">
-                    <Button id="send1" variant="contained" onClick={this.register}>Actualizar los datos</Button>
-                    <Button id={this.state.es_usuario==1? "send2" : "nosend"} variant="contained" onClick={this.deleteData}>Eliminar Usuario</Button>
+                   
+                    <Button id="add1" variant="contained" onClick={this.register}>Añadir Persona</Button>
                 </CardActions>
                 </Card>
-                <UsersTable edit={this.getData}/>
             </div>
         );
     }
 }
 
-export default UserTable;
+export default AgregarP;
