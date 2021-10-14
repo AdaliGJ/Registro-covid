@@ -43,13 +43,12 @@ function App() {
     <Router>
       <div className="App">
         <LoginContext.Provider value={{username, setUsername, setTipoUsuario, tipoUsuario}}> 
-        {username ?  <Switch> 
+        {username == 3 ?  <Switch> 
             <Route  path="/register-data" component={DataRegister}/>
             <Route exact path="/home" component={Home}/>
             <Route exact path="/contact" component={Contact}/>
             <Route exact path="/information" component={Information}/>
             <Route exact path="/news" component={News}/>
-            <Route exact path="/health-employees" component={UserData}/>
             <Route exact path="/vacunas" component={InsertVacunas}/>
             <Route exact path="/admin" component={UserTable}/>
             <Route exact path="/import-users" component={ImportUsers}/>
@@ -58,6 +57,27 @@ function App() {
             <Route exact path='/solicitudes' component={Solicitudes}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>:
+          username == 2 ? <Switch> 
+            <Route  path="/register-data" component={DataRegister}/>
+            <Route exact path="/home" component={Home}/>
+            <Route exact path="/contact" component={Contact}/>
+            <Route exact path="/information" component={Information}/>
+            <Route exact path="/news" component={News}/>
+            <Route exact path="/health-employees" component={UserData}/>
+            <Route exact path='/mi-cuenta' component={Profile}/>
+            <Redirect path="/" to="/home"></Redirect>
+          </Switch>
+          :
+          username == 1 ? <Switch> 
+            <Route  path="/register-data" component={DataRegister}/>
+            <Route exact path="/home" component={Home}/>
+            <Route exact path="/contact" component={Contact}/>
+            <Route exact path="/information" component={Information}/>
+            <Route exact path="/news" component={News}/>
+            <Route exact path='/mi-cuenta' component={Profile}/>
+            <Redirect path="/" to="/home"></Redirect>
+          </Switch>
+          :
           <Switch> 
             <Route exact path="/register" component={Register}/>
             <Route exact path="/register-data" component={DataRegister}/>
@@ -66,10 +86,6 @@ function App() {
             <Route exact path="/contact" component={Contact}/>
             <Route exact path="/information" component={Information}/>
             <Route exact path="/news" component={News}/>
-            <Route exact path="/health-employees" component={UserData}/>
-            <Route exact path="/admin" component={UserTable}/>
-            <Route exact path="/vacunas" component={InsertVacunas}/>
-            <Route exact path="/import-users" component={ImportUsers}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>}
         </LoginContext.Provider>  
