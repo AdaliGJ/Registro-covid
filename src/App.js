@@ -15,6 +15,7 @@ import ImportUsers from "./components/ImportUsers/importUsers";
 import Profile from "./components/Profile/profile";
 import Habilitar from "./components/Habilitar/habilitar";
 import Solicitudes from "./components/SolicitudesEmp/solicitudesemp";
+import Options from "./components/Options/options";
 
 function App() {
 
@@ -55,6 +56,7 @@ function App() {
             <Route exact path='/mi-cuenta' component={Profile}/>
             <Route exact path='/habilitar-poblacion' component={Habilitar}/>
             <Route exact path='/solicitudes' component={Solicitudes}/>
+            <Route exact path="/information-options" component={Options}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>:
           tipoUsuario == 2 ? <Switch> 

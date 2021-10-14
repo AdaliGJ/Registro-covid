@@ -1,0 +1,62 @@
+$verde: #0ab200;
+$morado: #230043;
+$blanco: #ffffff;
+$gris: #120e15;
+
+
+.options{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: max-content;
+    width: 100%;
+    background: $gris;
+    background: linear-gradient(90deg, $gris 0%, $morado 35%, $gris 100%);
+}
+
+.options_form{
+    color: $morado;
+    min-height: 55vh;
+    width: 60vw;
+    margin: auto;
+    margin-top: 5vh;
+    text-align: center;
+    border-color: $morado;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 8vh;
+}
+
+
+.options-data{
+    margin-left: 3vw;
+}
+ 
+@mixin botones($color){
+    background-color: $color;
+    color: $blanco;
+    margin: 1vw;
+}
+
+#boton-modal-centro{
+    @include botones($verde);
+}
+#boton-modal-enfermedad{
+    @include botones($morado); 
+}
+
+#boton-modal-trabajo{
+    @include botones($gris); 
+}
+
+#agregarCentro, #agregarEnfermedad, #agregarTrabajo{
+    background-color: $verde;
+    color: $blanco;
+    margin-right: 2vw;
+}
+
+#cancelarCentro, #cancelarEnfermedad, #cancelarTrabajo{
+    background-color: $morado;
+    color: $blanco;
+}
+

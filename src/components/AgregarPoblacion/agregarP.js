@@ -102,7 +102,7 @@ class AgregarP extends React.Component{
 
         axios.get(url2).then(response => response.data)
              .then((data) => {
-                this.setState({enfermedades: data});
+                this.setState({enfermedades: data.slice(1)});
                
                 console.log(this.state.enfermedades);
         });
@@ -154,7 +154,7 @@ class AgregarP extends React.Component{
                                 <InputLabel InputLabelProps={{shrink: true }}>Profesión</InputLabel>
                                 <Select label="Profesión" displayEmpty onChange={e=>this.setState({trabajo: e.target.value})} value={this.state.trabajo} >
                                     {this.state.trabajos.map((trab)=>(
-                                        <MenuItem key={trab.id_profesion} value={trab.id_profesion}  type="number">{trab.nombre}</MenuItem>
+                                        <MenuItem key={trab.id_profesion} value={trab.id_profesion}  type="number">{trab.sector_publico == 1? trab.nombre +" -público":trab.nombre +" -privado" }</MenuItem>
                                     ))}
                                 </Select>
                             </FormControl> 

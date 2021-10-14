@@ -53,7 +53,7 @@ class  UdpdateVacuna extends React.Component {
       <Button onClick={this.handleOpen} id="boton-modal-titulo">{this.props.titulo}</Button>
       <Modal open={this.state.open} onClose={this.handleOpen}>
         <Box className="box">
-          <h2>Ingresar el nuevo título</h2>
+          <h2>Editar</h2>
           <Grid container direction={"column"} spacing={2}>
             <Grid item>
               <TextField className="modalfield" label="Nombre" type="text" variant="outlined" onInput={e=>this.setState({vacuna: e.target.value})}  value={this.state.vacuna}/> 
