@@ -43,7 +43,7 @@ function App() {
     <Router>
       <div className="App">
         <LoginContext.Provider value={{username, setUsername, setTipoUsuario, tipoUsuario}}> 
-        {username == 3 ?  <Switch> 
+        {tipoUsuario == 3 ?  <Switch> 
             <Route  path="/register-data" component={DataRegister}/>
             <Route exact path="/home" component={Home}/>
             <Route exact path="/contact" component={Contact}/>
@@ -57,7 +57,7 @@ function App() {
             <Route exact path='/solicitudes' component={Solicitudes}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>:
-          username == 2 ? <Switch> 
+          tipoUsuario == 2 ? <Switch> 
             <Route  path="/register-data" component={DataRegister}/>
             <Route exact path="/home" component={Home}/>
             <Route exact path="/contact" component={Contact}/>
@@ -68,7 +68,7 @@ function App() {
             <Redirect path="/" to="/home"></Redirect>
           </Switch>
           :
-          username == 1 ? <Switch> 
+          tipoUsuario == 1 ? <Switch> 
             <Route  path="/register-data" component={DataRegister}/>
             <Route exact path="/home" component={Home}/>
             <Route exact path="/contact" component={Contact}/>
