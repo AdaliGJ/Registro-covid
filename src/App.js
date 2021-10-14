@@ -16,6 +16,7 @@ import Profile from "./components/Profile/profile";
 import Habilitar from "./components/Habilitar/habilitar";
 import Solicitudes from "./components/SolicitudesEmp/solicitudesemp";
 import Options from "./components/Options/options";
+import Reportes from "./components/Reportes/reportes";
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
             <Route exact path='/habilitar-poblacion' component={Habilitar}/>
             <Route exact path='/solicitudes' component={Solicitudes}/>
             <Route exact path="/information-options" component={Options}/>
+            <Route exact path="/reportes" component={Reportes}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>:
           tipoUsuario == 2 ? <Switch> 

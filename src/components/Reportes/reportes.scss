@@ -1,0 +1,22 @@
+$verde: #0ab200;
+$morado: #230043;
+$blanco: #ffffff;
+$gris: #120e15;
+
+
+.page{
+    min-height: 90vh;
+    padding-left: auto;
+    padding-right: auto;
+}
+
+#pdf-centros{
+    background-color: $verde;
+    color: $blanco;
+    margin-top: 2vh;
+}
+
+.report-search{
+    display: flex;
+    align-content: center;
+}

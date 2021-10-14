@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './vacunas.scss'
-import MenuBar from '../AppBar/appBar';
 import axios from 'axios';
 import Table from '@material-ui/core/Table';
 import {  withStyles } from '@material-ui/core/styles';
