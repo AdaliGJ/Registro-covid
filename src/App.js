@@ -17,6 +17,7 @@ import Habilitar from "./components/Habilitar/habilitar";
 import Solicitudes from "./components/SolicitudesEmp/solicitudesemp";
 import Options from "./components/Options/options";
 import Reportes from "./components/Reportes/reportes";
+import Actualizar from "./components/Actualizar/actualizar";
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
             <Route exact path='/solicitudes' component={Solicitudes}/>
             <Route exact path="/information-options" component={Options}/>
             <Route exact path="/reportes" component={Reportes}/>
+            <Route exact path="/primera-dosis" component={Actualizar}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>:
           tipoUsuario == 2 ? <Switch> 

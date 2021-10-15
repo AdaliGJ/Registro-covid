@@ -13,6 +13,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import axios from 'axios';
+import { Box, Modal } from '@material-ui/core';
 import { LoginContext } from '../../Context/LoginContext.js';
 import './empleado-salud.scss';
 
@@ -57,22 +58,27 @@ class UserData extends React.Component{
             userinfo: [],
             registrado: true,
             hoy: '',
-            fecha_incorrecta: false
+            fecha_incorrecta: false,
+            open: false
         }
 
-        this.mySubmit=this.mySubmit.bind(this);
+        this.handleOpen=this.handleOpen.bind(this);
         this.getData=this.getData.bind(this);
         this.updateData=this.updateData.bind(this);
+        this.aceptar=this.aceptar.bind(this);
       
     }
 
-    mySubmit(event){
-        console.log('this is the submit ' + this.state.dPI);
-        console.log('this is the submit ' + this.state.full_name);
-        console.log('this is the submit ' + this.state.email1);
-        console.log('this is the submit ' + this.state.tel1);
-    }
+    
 
+    handleOpen=()=>{
+        this.setState({open: !this.state.open})  
+   }
+
+   aceptar=()=>{
+       this.handleOpen();
+       this.getData();
+   }
    
     getData=()=>{
         const url = 'http://localhost/scripts/users.php';
@@ -145,14 +151,15 @@ class UserData extends React.Component{
         console.log(options);
 
         axios.post(url, formData)
-        .then(function (response) {
-            console.log(response)
+        .then((response)=>{
+            console.log(response);
+            this.setState({open: true});
         })
-        .catch(function (response) {
+        .catch((response)=>{
             console.log(response);
         });
 
-        this.getData();
+        
         this.getData();
         
     }
@@ -202,17 +209,17 @@ class UserData extends React.Component{
                             </FormControl> 
                         </Grid> 
                         <Grid item className="text-together">
-                            <TextField className="outlined-required-large" label="Fecha Primera dosis" type="date" variant="outlined" onInput={e=>this.setState({primera_dosis: e.target.value})} InputLabelProps={{shrink: true }} value={this.state.primera_dosis}/>
+                            <TextField className="outlined-required-large" label="Fecha Primera dosis" type="date" inputProps={{ readOnly: true, }} variant="outlined" onInput={e=>this.setState({primera_dosis: e.target.value})} InputLabelProps={{shrink: true }} value={this.state.primera_dosis}/>
                             <hr/>
                             <VacunaAplicada change={e=>this.setState({primera_aplicada: e.target.value})} value={this.state.primera_aplicada}/>
                         </Grid>
                         <Grid item className="text-together">
-                            <TextField className="outlined-required-large" label="Fecha Segunda dosis" type="date" variant="outlined" onInput={e=>this.setState({segunda_dosis: e.target.value})} InputLabelProps={{shrink: true }} value={this.state.segunda_dosis}/>
+                            <TextField className="outlined-required-large" label="Fecha Segunda dosis" type="date" inputProps={{ readOnly: true, }} variant="outlined" onInput={e=>this.setState({segunda_dosis: e.target.value})} InputLabelProps={{shrink: true }} value={this.state.segunda_dosis}/>
                             <hr/>
                             <VacunaAplicada change={e=>this.setState({segunda_aplicada: e.target.value})} value={this.state.segunda_aplicada}/>
                         </Grid>
                         <Grid item className="text-together">
-                            <TextField className="outlined-required-large" label="Fecha Tercera dosis" type="date" variant="outlined" onInput={e=>this.setState({tercera_dosis: e.target.value})} InputLabelProps={{shrink: true }} value={this.state.tercera_dosis}/>
+                            <TextField className="outlined-required-large" label="Fecha Tercera dosis" type="date" inputProps={{ readOnly: true, }} variant="outlined" onInput={e=>this.setState({tercera_dosis: e.target.value})} InputLabelProps={{shrink: true }} value={this.state.tercera_dosis}/>
                             <hr/>
                             <VacunaAplicada change={e=>this.setState({tercera_aplicada: e.target.value})} value={this.state.tercera_aplicada}/>
                         </Grid>
@@ -224,6 +231,12 @@ class UserData extends React.Component{
                     <Button id={(this.state.fecha_incorrecta || !this.state.registrado) ? "noregistrar":"send" } variant="contained" onClick={this.updateData}>Registrar los cambios</Button>
                 </CardActions>
                 </Card>
+                <Modal open={this.state.open} onClose={this.handleOpen}>
+                    <Box className="success-box">
+                    <Alert severity="success">Datos actualizados correctamente</Alert>
+                    <Button id="success-accept" onClick={this.aceptar}>Aceptar</Button>
+                    </Box>
+                </Modal>
             </div>
         );
     }
