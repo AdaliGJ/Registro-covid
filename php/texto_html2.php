@@ -20,16 +20,19 @@ if (!$con) {
 
 switch ($method) {
 	case 'GET':
-  	$sql = "select id_vacuna, nombre from vacunas";
+		$id=$_GET['id'];
+  		$sql = "delete from titulo_texto where id_titulo='$id';";
   	break;
 
 	case 'POST':
-	$nombre = $_POST['nombre'];
-	$lab = $_POST['laboratorio'];
-	$dosis = $_POST['dosis'];
-	$dias = $_POST['dias'];
-	$sql = "call insertVacunas('$nombre','$lab','$dosis','$dias');";
+		
+		$id = $_POST['id'];
+		$texto=$_POST['texto'];	
+
+		$sql="UPDATE titulo_texto SET texto='$texto' where id_titulo='$id';";
+
 	break;
+
 }
 
 // run SQL statement
@@ -43,17 +46,10 @@ if (!$result) {
 }
 
 if ($method == 'GET') {
-	$usarray = array();
-    	while($row =mysqli_fetch_assoc($result))
-    	{
-        	$usarray[] = $row;
-    	}
-    echo json_encode($usarray);
+	
+    echo json_encode($result);
   } else {
-	$arows = mysqli_affected_rows($con);
-	if($arrows == 1){
-		echo 1;
-	}
+	echo mysqli_affected_rows($con);
   }
 
 $con->close();

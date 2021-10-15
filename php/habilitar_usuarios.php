@@ -20,15 +20,24 @@ if (!$con) {
 
 switch ($method) {
 	case 'GET':
-  	$sql = "select id_vacuna, nombre from vacunas";
+  	$sql = "select * from enfermedad_cronica";
   	break;
-
+	
 	case 'POST':
-	$nombre = $_POST['nombre'];
-	$lab = $_POST['laboratorio'];
-	$dosis = $_POST['dosis'];
-	$dias = $_POST['dias'];
-	$sql = "call insertVacunas('$nombre','$lab','$dosis','$dias');";
+	$parametro=$_POST['parametro'];
+
+	if($parametro == "1"){
+		$fecha = $_POST['fecha'];
+		$simbolo = $_POST['simbolo'];
+		$sql="call habilitar_edad('$fecha', '$simbolo');";
+	}else if($parametro == "3"){
+		$enfermedad = $_POST['enfermedad'];
+		$sql="call habilitar_enfermedad('$enfermedad');";
+	}else if($parametro == "2"){
+		$trabajo = $_POST['trabajo'];
+		$sql="call habilitar_trabajo('$trabajo');";
+		
+	}
 	break;
 }
 
@@ -38,7 +47,7 @@ $result = mysqli_query($con,$sql);
 
 // die if SQL statement failed
 if (!$result) {
-  http_response_code(404);
+ http_response_code(404);
   die(mysqli_error($con));
 }
 
@@ -50,10 +59,7 @@ if ($method == 'GET') {
     	}
     echo json_encode($usarray);
   } else {
-	$arows = mysqli_affected_rows($con);
-	if($arrows == 1){
-		echo 1;
-	}
+	echo mysqli_affected_rows($con);
   }
 
 $con->close();

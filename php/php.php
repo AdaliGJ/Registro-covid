@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin: *');
 $host = "localhost";
 $user = "root";
 $password = "";
-$dbname = "registro_covid";
+$dbname = "employees";
 $emp_no = '';
 
 $con = mysqli_connect($host, $user, $password,$dbname);
@@ -20,16 +20,19 @@ if (!$con) {
 
 switch ($method) {
 	case 'GET':
-  	$sql = "select id_vacuna, nombre from vacunas";
+  	$emp_no = $_GET['emp_no'];
+  	$sql = "select * from employees ".($emp_no?" where emp_no=$emp_no":'')." limit 10";
   	break;
-
 	case 'POST':
-	$nombre = $_POST['nombre'];
-	$lab = $_POST['laboratorio'];
-	$dosis = $_POST['dosis'];
-	$dias = $_POST['dias'];
-	$sql = "call insertVacunas('$nombre','$lab','$dosis','$dias');";
-	break;
+  	$emp_no = $_POST["emp_no"];
+  	$first_name = $_POST["first_name"];
+  	$last_name = $_POST["last_name"];
+  	$gender = $_POST["gender"];
+ 	 
+ 	 
+  	$sql = "insert into employees (emp_no, first_name, last_name, gender, hire_date, birth_date) values ('$emp_no', '$first_name', '$last_name', '$gender', now(), now());";
+ 	 
+  	break;
 }
 
 // run SQL statement
@@ -43,17 +46,16 @@ if (!$result) {
 }
 
 if ($method == 'GET') {
-	$usarray = array();
+	$emparray = array();
     	while($row =mysqli_fetch_assoc($result))
     	{
-        	$usarray[] = $row;
+        	$emparray[] = $row;
     	}
-    echo json_encode($usarray);
+    echo json_encode($emparray);
+  } elseif ($method == 'POST') {
+	echo json_encode($result);
   } else {
-	$arows = mysqli_affected_rows($con);
-	if($arrows == 1){
-		echo 1;
-	}
+	echo mysqli_affected_rows($con);
   }
 
 $con->close();

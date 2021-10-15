@@ -20,15 +20,23 @@ if (!$con) {
 
 switch ($method) {
 	case 'GET':
-  	$sql = "select id_vacuna, nombre from vacunas";
-  	break;
+	$sql="select *, profesion_persona_id(dpi) trabajo, es_usuario(dpi) es_usuario, enfermedad_id(dpi) enfermedad from poblacion;";
+	
+	break;
 
 	case 'POST':
-	$nombre = $_POST['nombre'];
-	$lab = $_POST['laboratorio'];
-	$dosis = $_POST['dosis'];
-	$dias = $_POST['dias'];
-	$sql = "call insertVacunas('$nombre','$lab','$dosis','$dias');";
+		$dpi=$_POST['dpi'];
+		$nombre=$_POST['nombre'];
+		$nacionalidad=$_POST['nacionalidad'];
+		$fecha=$_POST['fecha_nacimiento'];
+		$sexo=$_POST['sexo'];
+		$trabajo=$_POST['trabajo'];
+		$enfermedad=$_POST['enfermedad'];
+		$correo=$_POST['correo'];
+		$tel=$_POST['telefono'];
+		
+		$sql="call add_persona('$dpi','$nombre','$nacionalidad','$sexo','$fecha','$trabajo','$enfermedad', '$correo', '$tel');"; 
+	
 	break;
 }
 
@@ -50,10 +58,7 @@ if ($method == 'GET') {
     	}
     echo json_encode($usarray);
   } else {
-	$arows = mysqli_affected_rows($con);
-	if($arrows == 1){
-		echo 1;
-	}
+	echo mysqli_affected_rows($con);
   }
 
 $con->close();

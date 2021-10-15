@@ -19,18 +19,32 @@ if (!$con) {
 
 
 switch ($method) {
+	
 	case 'GET':
-  		$sql = "select id_puesto, nombre from puesto_vacunacion";
+	$id=$_GET['id'];
+  	$sql = "Delete from imagen_texto_lado where id_imagen_texto = '$id';";
   	break;
 
 	case 'POST':
-		$nombre=$_POST['nombre'];
-		$departamento=$_POST['departamento'];
-		$direccion=$_POST['direccion'];
+		
+		$id = $_POST['id'];
+		$texto=$_POST['texto'];	
+		$derecha=$_POST['derecha'];
+		$imagen=$_POST['imagen'];
 
-  		$sql = "INSERT into puesto_vacunacion (nombre, departamento, direccion) values ('$nombre', '$departamento', '$direccion');";
-  	break;
-	
+		
+
+		if($_FILES['img']){
+			$file = $_FILES['img'];
+			$nombre_img = $_FILES['img']['name'];
+			$carpeta_destino = $_SERVER['DOCUMENT_ROOT'].'/webimages/';
+			move_uploaded_file($_FILES['img']['tmp_name'], $carpeta_destino.$nombre_img);
+
+			$sql="UPDATE imagen_texto_lado SET imagen='$imagen', texto='$texto', derecha='$derecha' where id_imagen_texto='$id';";
+		}else{
+			$sql="UPDATE imagen_texto_lado SET imagen='$imagen', texto='$texto', derecha='$derecha' where id_imagen_texto='$id';";
+		}
+	break;
 
 }
 
@@ -40,8 +54,8 @@ $result = mysqli_query($con,$sql);
 
 // die if SQL statement failed
 if (!$result) {
-  http_response_code(404);
-  die(mysqli_error($con));
+  //http_response_code(404);
+  //die(mysqli_error($con));
 }
 
 if ($method == 'GET') {

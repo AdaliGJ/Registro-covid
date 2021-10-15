@@ -21,7 +21,7 @@ if (!$con) {
 switch ($method) {
 	case 'GET':
 	$dpi=$_GET['dpi'];
-  	$sql = "select p.*, tipo_usuario('$dpi') tipo_usuario, tel2_persona('$dpi') tel2, tel1_persona('$dpi') tel1, correo1_persona('$dpi') email1, correo2_persona('$dpi') email2, profesion_persona('$dpi') profesion from poblacion p".($dpi?" where dpi=$dpi":'').";";
+  	$sql = "select p.*, tipo_usuario('$dpi') tipo_usuario, tel2_persona('$dpi') tel2, tel1_persona('$dpi') tel1, correo1_persona('$dpi') email1, correo2_persona('$dpi') email2, profesion_persona('$dpi') profesion, enfermedad('$dpi') enfermedad from poblacion p".($dpi?" where dpi=$dpi":'').";";
   	break;
 		
 }

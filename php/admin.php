@@ -21,7 +21,7 @@ if (!$con) {
 switch ($method) {
 	case 'GET':
 	$dpi=$_GET['dpi'];
-	$sql="select *, profesion_persona_id('$dpi') trabajo, es_usuario('$dpi') es_usuario from poblacion where dpi='$dpi';";
+	$sql="select *, profesion_persona_id('$dpi') trabajo, es_usuario('$dpi') es_usuario, enfermedad_id('$dpi') enfermedad from poblacion where dpi=$dpi;";
 	
 	break;
 
@@ -32,9 +32,10 @@ switch ($method) {
 	$fecha=$_POST['fecha_nacimiento'];
 	$sexo=$_POST['sexo'];
 	$trabajo=$_POST['trabajo'];
+	$enfermedad=$_POST['enfermedad'];
 
 	
-	$sql="call update_poblacion('$dpi','$nombre','$nacionalidad','$sexo','$fecha','$trabajo');"; 
+	$sql="call update_poblacion('$dpi','$nombre','$nacionalidad','$sexo','$fecha','$trabajo','$enfermedad');"; 
 		 
 	
 	break;

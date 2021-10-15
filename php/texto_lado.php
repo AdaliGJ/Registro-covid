@@ -19,17 +19,27 @@ if (!$con) {
 
 
 switch ($method) {
+	case 'POST':
+		$file = $_FILES['img'];
+		$texto=$_POST['texto'];	
+		$derecha=$_POST['derecha'];
+
+		$nombre_img = $_FILES['img']['name'];
+
+		$carpeta_destino = $_SERVER['DOCUMENT_ROOT'].'/webimages/';
+
+		move_uploaded_file($_FILES['img']['tmp_name'], $carpeta_destino.$nombre_img);
+		
+		
+		$sql="INSERT INTO imagen_texto_lado (imagen, texto, derecha) VALUES ('$nombre_img', '$texto', '$derecha');";
+	
+	break;
+	
 	case 'GET':
-  	$sql = "select id_vacuna, nombre from vacunas";
+  	$sql = "select * from imagen_texto_lado;";
   	break;
 
-	case 'POST':
-	$nombre = $_POST['nombre'];
-	$lab = $_POST['laboratorio'];
-	$dosis = $_POST['dosis'];
-	$dias = $_POST['dias'];
-	$sql = "call insertVacunas('$nombre','$lab','$dosis','$dias');";
-	break;
+
 }
 
 // run SQL statement
@@ -38,8 +48,8 @@ $result = mysqli_query($con,$sql);
 
 // die if SQL statement failed
 if (!$result) {
-  http_response_code(404);
-  die(mysqli_error($con));
+  //http_response_code(404);
+  //die(mysqli_error($con));
 }
 
 if ($method == 'GET') {
@@ -50,10 +60,7 @@ if ($method == 'GET') {
     	}
     echo json_encode($usarray);
   } else {
-	$arows = mysqli_affected_rows($con);
-	if($arrows == 1){
-		echo 1;
-	}
+	echo mysqli_affected_rows($con);
   }
 
 $con->close();
