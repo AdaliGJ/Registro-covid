@@ -85,6 +85,8 @@ class Footer extends Component{
                                 <FooterBox link='/habilitar-poblacion' title="Habilitar Personas" name={this.context.tipoUsuario==3 ? "sifoot":"nofoot"}/>
                                 <FooterBox link='/import-users' title="Ingresar Población" name={this.context.tipoUsuario==3 ? "sifoot":"nofoot"}/>
                                 <FooterBox link='/information-options' title="Agregar Datos Selección" name={this.context.tipoUsuario==3 ? "sifoot":"nofoot"}/>
+                                <FooterBox link='/solicitudes' title="Permisos de Empleado" name={this.context.tipoUsuario==3 ? "sifoot":"nofoot"}/>
+                                <FooterBox link='/primera-dosis' title="Asignar Primera Dosis" name={this.context.tipoUsuario==3 ? "sifoot":"nofoot"}/>
                             </Grid>
                             <Grid item xs={4}> 
                                 <Box borderBottom={1}>Redes sociales</Box>
