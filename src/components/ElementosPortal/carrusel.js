@@ -4,22 +4,24 @@ import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Card from '@material-ui/core/Card';
 
+const baseURL = 'http://localhost/webimages/';
+
 export const SliderData = [
     {
       image:
-        'https://www.mspas.gob.gt/images/images-slider/yo-me-vacuno-1.jpg'
+        baseURL + 'yo-me-vacuno-1.jpg'
     },
     {
       image:
-        'https://www.mspas.gob.gt/images/images-slider/yo-me-vacuno-3.jpg'
+      baseURL + 'yo-me-vacuno-3.jpg'
     },
     {
       image:
-        'https://www.mspas.gob.gt/images/images-slider/PREGUNTAS-FRECUENTES-vacuna.jpg'
+      baseURL + 'PREGUNTAS-FRECUENTES-vacuna.jpg'
     },
     {
       image:
-        'https://www.mspas.gob.gt/images/images-slider/registros-v6.png'
+      baseURL + 'registros-v6.png'
     }
   ];
 
