@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import AgregarP from '../AgregarPoblacion/agregarP.js';
+import { Alert } from '@material-ui/lab';
 
 class ImportUsers extends React.Component{
     static contextType = LoginContext;
@@ -17,7 +18,8 @@ class ImportUsers extends React.Component{
         super(props);
         this.state = {
            csv: '',
-           file: null
+           file: null,
+           exito: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.submitData = this.submitData.bind(this);
@@ -40,11 +42,14 @@ class ImportUsers extends React.Component{
             formData.append('csv', this.state.file);
                
                 axios.post(url, formData)
-                .then(function (response) {
+                .then((response)=> {
                     console.log(response);
+                    this.setState({csv:'',
+                    exito: true});
                 })
-                .catch(function (response) {
+                .catch((response)=> {
                     console.log(response);
+                    this.setState({exito: false});
                 });
     }
 
@@ -76,6 +81,10 @@ class ImportUsers extends React.Component{
                                     <input type="hidden" name="hidden_field" value="1" />
                                     <Button name="import" id="import" value="Enviar a la base de datos" onClick={this.submitData}>Enviar a la base de datos</Button>
                                 </Grid>
+                                {this.state.exito?
+                                <Grid item >
+                                    <Alert severity="success">Población añadida correctamente</Alert>
+                                </Grid>:<p></p>}
                             </Grid>
                         </form>
                     </Card>
