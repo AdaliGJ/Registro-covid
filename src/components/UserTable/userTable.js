@@ -58,10 +58,20 @@ class UserTable extends React.Component{
         formData.append('enfermedad', this.state.enfermedad);
 
         axios.post(url, formData)
-        .then(function (response) {
+        .then((response)=> {
             console.log(response);
+            this.setState({
+                dPI: '',
+                full_name: '',
+                nacionalidad:'',
+                fecha_nacimiento: '',
+                sexo: '',
+                enfermedad: '',
+                trabajo: '',
+                es_usuario: ''
+            })
         })
-        .catch(function (response) {
+        .catch((response)=>{
             console.log(response);
         });
         console.log(this.state.dPI);
@@ -109,10 +119,10 @@ class UserTable extends React.Component{
         formData.append('dpi', this.state.dPI);
 
         axios.post(url, formData)
-        .then(function (response) {
+        .then((response)=> {
             console.log(response);
         })
-        .catch(function (response) {
+        .catch((response)=>{
             console.log(response);
         });
     }
