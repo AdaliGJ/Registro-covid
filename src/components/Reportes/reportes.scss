@@ -32,3 +32,20 @@ p{
     margin-right: 1vw;
     max-width: 98%;
 }
+
+.download-table-xls-button{
+    background-color: $verde;
+    color: $blanco;
+    margin-top: 2vh;
+    border: none;
+    height: 6vh;
+    border-radius: 0.5vw;
+}
+
+.download-table-xls-button:hover{
+    cursor: pointer;
+}
+
+#name-centros, #name-centros-fecha{
+    display: none;
+}

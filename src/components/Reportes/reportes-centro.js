@@ -14,6 +14,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Grid, TextField } from '@material-ui/core';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
@@ -39,7 +40,9 @@ class ReportesCentro extends React.Component{
             centro: 0,
             puestos: [],
             fecha1: '',
-            fecha2: ''
+            fecha2: '',
+            mensajeCentro: 'Reporte Vacunación en todos los centros  ',
+            mensajeFechas: ''
         };
 
         this.getData=this.getData.bind(this);
@@ -55,6 +58,19 @@ class ReportesCentro extends React.Component{
                 centro: centro,
                 fecha1: fecha1,
                 fecha2: fecha2})
+                if(this.state.centro!=0){
+                    this.setState({mensajeCentro: "Reporte Centro de vacunación " + this.state.centro});
+                 }else{
+                     this.setState({mensajeCentro:"Reporte Vacunación en todos los centros  "});
+                 }
+         
+                 if(this.state.fecha1!='' && this.state.fecha2!=''){
+                     this.setState({mensajeFechas: "Reporte Entre las fechas  " + this.state.fecha1+" y "+this.state.fecha2 });
+                 }else if(this.state.fecha1=='' && this.state.fecha2!=''){
+                    this.setState({mensajeFechas: "Reporte en las fechas en las fechas anteriores a  " +this.state.fecha2 });
+                 }else if(this.state.fecha1!='' && this.state.fecha2==''){
+                    this.setState({mensajeFechas: "Reporte en las fechas en las fechas posteriores a  " +this.state.fecha1 });
+                 }
                 console.log(this.state.reportes)
         });
         console.log(this.state.reportes);
@@ -75,7 +91,6 @@ class ReportesCentro extends React.Component{
         if(this.state.fecha1!='' && this.state.fecha2!=''){
             doc.text("Reporte Entre las fechas  " + this.state.fecha1+" y "+this.state.fecha2, 10, 20);
         }else if(this.state.fecha1=='' && this.state.fecha2!=''){
-
         }
 
         doc.autoTable({ html: '#tabla-centros', margin: { top: 30 } } );
@@ -99,6 +114,7 @@ class ReportesCentro extends React.Component{
         });
 
         console.log(this.state.reportes);
+
     }
 
   
@@ -128,6 +144,12 @@ class ReportesCentro extends React.Component{
                 
                 <StyledTable className="customized-table" id="tabla-centros">
                     <TableHead >
+                    <TableRow id="name-centros">
+                        {this.state.mensajeCentro}
+                    </TableRow>
+                    <TableRow id="name-centros-fecha">
+                        {this.state.mensajeFechas}
+                    </TableRow>
                     <TableRow className="table-header">
                         <StyledTableCell>Centro de vacunación</StyledTableCell>
                         <StyledTableCell align="right">Nombre Centro</StyledTableCell>
@@ -158,7 +180,14 @@ class ReportesCentro extends React.Component{
                     </TableBody>
                 </StyledTable>
                 </Grid>
-                <Button id="pdf-centros" onClick={this.exportPDF}>Desargar PDF</Button>
+                <ReactHTMLTableToExcel
+                    id="test-table-xls-button"
+                    className="download-table-xls-button"
+                    table="tabla-centros"
+                    filename="tabla-centros"
+                    sheet="vacuna-centros"
+                    buttonText="DESCARGAR HOJA DE CÁLCULO"
+                    />
                 
                 </Paper>
            </div> 
