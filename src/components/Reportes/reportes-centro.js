@@ -30,6 +30,7 @@ const StyledTableCell = withStyles({
   })(Table);
 
 
+
 class ReportesCentro extends React.Component{
     constructor(props){
         super(props);
@@ -63,7 +64,6 @@ class ReportesCentro extends React.Component{
     exportPDF=()=>{
         //const title = "Reportes Por Centro de Vacunación";
         //const headers = [["Centro", "Nombre Completo", "DPI Persona", "Género", "Fecha", "# de Dosis", "Vacuna Aplicada", "Nombre Vacuna"]];
-
         const doc = new jsPDF();
 
         if(this.state.centro!=0){
@@ -105,7 +105,7 @@ class ReportesCentro extends React.Component{
     render(){
         return(
            <div className="report_table">     
-                <Paper className="container">
+                <Paper className="container" elevation={20}>
                 <Grid container direction={"column"} spacing={3}>
                 <div className="report-search">
                     <h1>Reportes de vacunación por centro</h1>
