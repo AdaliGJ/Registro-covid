@@ -13,6 +13,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import { Grid, TextField } from '@material-ui/core';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 const StyledTableCell = withStyles({
     root: {
@@ -33,21 +36,51 @@ class ReportesCentro extends React.Component{
         this.state={
             reportes: [],
             centro: 0,
-            puestos: []
+            puestos: [],
+            fecha1: '',
+            fecha2: ''
         };
 
         this.getData=this.getData.bind(this);
+        this.exportPDF=this.exportPDF.bind(this);
     }
     
-    getData=(centro)=>{
+    getData=(centro, fecha1, fecha2)=>{
         const url = 'http://localhost/scripts/centros_reportes.php';
-
-        axios.get(url, {params:{centro: centro}}).then(response => response.data)
+       
+        axios.get(url, {params:{centro: centro, inicio: fecha1, fin: fecha2}}).then(response => response.data)
              .then((data) => {
-                this.setState({ reportes: data})
-                console.log(this.state. reportes)
+                this.setState({ reportes: data,
+                centro: centro,
+                fecha1: fecha1,
+                fecha2: fecha2})
+                console.log(this.state.reportes)
         });
         console.log(this.state.reportes);
+    }
+
+
+    exportPDF=()=>{
+        //const title = "Reportes Por Centro de Vacunación";
+        //const headers = [["Centro", "Nombre Completo", "DPI Persona", "Género", "Fecha", "# de Dosis", "Vacuna Aplicada", "Nombre Vacuna"]];
+
+        const doc = new jsPDF();
+
+        if(this.state.centro!=0){
+            doc.text("Reporte Centro de vacunación " + this.state.centro, 10, 10);
+        }else{
+            doc.text("Reporte Vacunación en todos los centros  ", 10, 10);
+        }
+
+        if(this.state.fecha1!='' && this.state.fecha2!=''){
+            doc.text("Reporte Entre las fechas  " + this.state.fecha1+" y "+this.state.fecha2, 10, 20);
+        }else if(this.state.fecha1=='' && this.state.fecha2!=''){
+
+        }
+
+        doc.autoTable({ html: '#tabla-centros', margin: { top: 30 } } );
+        doc.save('tabla-centros.pdf');
+
     }
 
 
@@ -56,7 +89,7 @@ class ReportesCentro extends React.Component{
     componentDidMount(){
         console.log(this.state.reportes);
 
-        this.getData(0);
+        this.getData(0, '','');
 
         const url = 'http://localhost/scripts/centros.php';
 
@@ -64,6 +97,8 @@ class ReportesCentro extends React.Component{
              .then((data) => {
                 this.setState({puestos: data});
         });
+
+        console.log(this.state.reportes);
     }
 
   
@@ -71,11 +106,12 @@ class ReportesCentro extends React.Component{
         return(
            <div className="report_table">     
                 <Paper className="container">
+                <Grid container direction={"column"} spacing={3}>
                 <div className="report-search">
                     <h1>Reportes de vacunación por centro</h1>
                     <FormControl className="outlined-short" variant ="outlined">
                         <InputLabel>Filtrar por centro</InputLabel>
-                        <Select label="Filtrar por centro" onChange={e=>this.getData(e.target.value)}>
+                        <Select label="Filtrar por centro" onChange={e=>this.getData(e.target.value, this.state.fecha1, this.state.fecha2)}>
                             <MenuItem value={0}>Todos</MenuItem>
                             {this.state.puestos.map((puesto)=>(
                                 <MenuItem key={puesto.id_puesto} value={puesto.id_puesto}>{puesto.nombre}</MenuItem>
@@ -83,7 +119,14 @@ class ReportesCentro extends React.Component{
                         </Select>
                     </FormControl> 
                 </div>
-                <StyledTable className="customized-table">
+                <p>Escoja un rango de fechas</p>
+                <Grid item className="text-together">
+                    <TextField className="outlined-short" label="Fecha Inicio" type="date" variant="outlined" onChange={e=>this.getData(this.state.centro, e.target.value, this.state.fecha2)} InputLabelProps={{shrink: true }}/>
+                    <hr/>
+                    <TextField className="outlined-short" label="Fecha Final" type="date" variant="outlined" onChange={e=>this.getData(this.state.centro, this.state.fecha1, e.target.value)} InputLabelProps={{shrink: true }}/>
+                </Grid>
+                
+                <StyledTable className="customized-table" id="tabla-centros">
                     <TableHead >
                     <TableRow className="table-header">
                         <StyledTableCell>Centro de vacunación</StyledTableCell>
@@ -114,7 +157,9 @@ class ReportesCentro extends React.Component{
                     ))}
                     </TableBody>
                 </StyledTable>
-                <Button id="pdf-centros">Desargar PDF</Button>
+                </Grid>
+                <Button id="pdf-centros" onClick={this.exportPDF}>Desargar PDF</Button>
+                
                 </Paper>
            </div> 
         );

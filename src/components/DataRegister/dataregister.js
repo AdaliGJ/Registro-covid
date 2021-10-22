@@ -32,7 +32,7 @@ class DataRegister extends React.Component{
             tel2: '',
             fecha_nacimiento: '',
             sexo: '',
-            enfermedad: false,
+            enfermedad: '',
             trabajo: '',
             centro_vacunacion: null,
             centros: [],
