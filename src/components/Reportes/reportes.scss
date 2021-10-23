@@ -19,7 +19,7 @@ $gris: #120e15;
 .report-search{
     display: flex;
     align-content: center;
-    margin-top: 1vh;
+    margin-top: 2vh;
 }
 p{
     margin: auto;
@@ -27,7 +27,7 @@ p{
     margin-bottom: 2vh;
 }
 
-#tabla-centros{
+#tabla-centros, #tabla-vacunas-centros, #tabla-habilitadas{
     margin-left: 1vw;
     margin-right: 1vw;
     max-width: 98%;
@@ -46,6 +46,14 @@ p{
     cursor: pointer;
 }
 
-#name-centros, #name-centros-fecha, #name-centros-vacuna, #name-centros-fecha-vacuna{
+#name-centros, #name-centros-fecha, #name-centros-vacuna, #name-centros-fecha-vacuna, #name-habilitadas{
     display: none;
+}
+
+.title{
+    margin-left: 40%;
+}
+
+.report_table{
+    margin-top: -3%;
 }

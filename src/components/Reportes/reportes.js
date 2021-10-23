@@ -29,6 +29,7 @@ class Reportes extends React.Component{
             <div>
                 <MenuBar/>
                 <div className="page">
+                <h1 className="title">Reportes</h1>
                     <ReportesCentro/>
                     <ReportesVacunas/>
                     <ReportesHabilitadas/>

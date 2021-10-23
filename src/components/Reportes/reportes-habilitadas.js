@@ -8,15 +8,8 @@ import TableCell from '@material-ui/core/TableCell';
 import Paper from "@material-ui/core/Paper";
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import { Grid, TextField } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
-import jsPDF from 'jspdf';
-import 'jspdf-autotable';
 
 const StyledTableCell = withStyles({
     root: {
@@ -38,8 +31,8 @@ class ReportesHabilitadas extends React.Component{
         this.state={
             reportes: [],
             puestos: [],
-            mensajeCentro: 'Reporte Vacunación en todos los centros  ',
-            mensajeFechas: ''
+            mensaje: 'Reporte de personas habilitadas para vacuna sin registrarse aún',
+            
         };
 
         this.getData=this.getData.bind(this);
@@ -82,22 +75,18 @@ class ReportesHabilitadas extends React.Component{
            <div className="report_table">     
                 <Paper className="container" elevation={20}>
                 <Grid container direction={"column"} spacing={3}>
-                    <h1>Reportes de vacunación por centro</h1>
-                
-                <StyledTable className="customized-table" id="tabla-centros">
+                    <h1>Personas habilitadas sin registrarse</h1>
+                <StyledTable className="customized-table" id="tabla-habilitadas">
                     <TableHead >
-                    <TableRow id="name-centros">
-                        {this.state.mensajeCentro}
-                    </TableRow>
-                    <TableRow id="name-centros-fecha">
-                        {this.state.mensajeFechas}
+                    <TableRow id="name-habilitadas">
+                        {this.state.mensaje}
                     </TableRow>
                     <TableRow className="table-header">
-                        <StyledTableCell>Centro de vacunación</StyledTableCell>
-                        <StyledTableCell align="right">Nombre Centro</StyledTableCell>
-                        <StyledTableCell align="right">DPI persona</StyledTableCell>
+                        <StyledTableCell>DPI Persona</StyledTableCell>
+                        <StyledTableCell align="right">Nombre Completo</StyledTableCell>
+                        <StyledTableCell align="right">Fecha de Nacimiento</StyledTableCell>
                         <StyledTableCell align="right">Género persona</StyledTableCell>
-                        <StyledTableCell align="right">Fecha de la dosis</StyledTableCell>
+                        <StyledTableCell align="right">Nacionalidad</StyledTableCell>
                        
                     </TableRow>
                     </TableHead>
@@ -117,11 +106,10 @@ class ReportesHabilitadas extends React.Component{
                 </StyledTable>
                 </Grid>
                 <ReactHTMLTableToExcel
-                    id="test-table-xls-button"
                     className="download-table-xls-button"
-                    table="tabla-centros"
-                    filename="tabla-centros"
-                    sheet="vacuna-centros"
+                    table="tabla-habilitadas"
+                    filename="tabla-personas-habilitadas"
+                    sheet="habilitadas-sin-registrar"
                     buttonText="DESCARGAR HOJA DE CÁLCULO"
                     />
                 
