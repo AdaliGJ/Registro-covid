@@ -30,8 +30,7 @@ class ReportesHabilitadas extends React.Component{
         super(props);
         this.state={
             reportes: [],
-            mensaje: 'Reporte de personas habilitadas para vacuna sin registrarse aún',
-            cantidad: 'Hola'
+            mensaje: 'Reporte de personas habilitadas para vacuna sin registrarse aún'
             
         };
 
