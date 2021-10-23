@@ -46,7 +46,6 @@ class ReportesCentro extends React.Component{
         };
 
         this.getData=this.getData.bind(this);
-        this.exportPDF=this.exportPDF.bind(this);
     }
     
     getData=(centro, fecha1, fecha2)=>{
@@ -77,26 +76,7 @@ class ReportesCentro extends React.Component{
     }
 
 
-    exportPDF=()=>{
-        //const title = "Reportes Por Centro de Vacunación";
-        //const headers = [["Centro", "Nombre Completo", "DPI Persona", "Género", "Fecha", "# de Dosis", "Vacuna Aplicada", "Nombre Vacuna"]];
-        const doc = new jsPDF();
-
-        if(this.state.centro!=0){
-            doc.text("Reporte Centro de vacunación " + this.state.centro, 10, 10);
-        }else{
-            doc.text("Reporte Vacunación en todos los centros  ", 10, 10);
-        }
-
-        if(this.state.fecha1!='' && this.state.fecha2!=''){
-            doc.text("Reporte Entre las fechas  " + this.state.fecha1+" y "+this.state.fecha2, 10, 20);
-        }else if(this.state.fecha1=='' && this.state.fecha2!=''){
-        }
-
-        doc.autoTable({ html: '#tabla-centros', margin: { top: 30 } } );
-        doc.save('tabla-centros.pdf');
-
-    }
+    
 
 
    

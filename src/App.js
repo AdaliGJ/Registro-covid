@@ -18,6 +18,7 @@ import Solicitudes from "./components/SolicitudesEmp/solicitudesemp";
 import Options from "./components/Options/options";
 import Reportes from "./components/Reportes/reportes";
 import Actualizar from "./components/Actualizar/actualizar";
+import EstadoProceso from "./components/EstadoVacunacion/estado-vacunacion";
 
 function App() {
 
@@ -61,6 +62,7 @@ function App() {
             <Route exact path="/information-options" component={Options}/>
             <Route exact path="/reportes" component={Reportes}/>
             <Route exact path="/primera-dosis" component={Actualizar}/>
+            <Route exact path="/mi-proceso" component={EstadoProceso}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>:
           tipoUsuario == 2 ? <Switch> 
@@ -71,6 +73,7 @@ function App() {
             <Route exact path="/news" component={News}/>
             <Route exact path="/health-employees" component={UserData}/>
             <Route exact path='/mi-cuenta' component={Profile}/>
+            <Route exact path="/mi-proceso" component={EstadoProceso}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>
           :
@@ -81,6 +84,7 @@ function App() {
             <Route exact path="/information" component={Information}/>
             <Route exact path="/news" component={News}/>
             <Route exact path='/mi-cuenta' component={Profile}/>
+            <Route exact path="/mi-proceso" component={EstadoProceso}/>
             <Redirect path="/" to="/home"></Redirect>
           </Switch>
           :
