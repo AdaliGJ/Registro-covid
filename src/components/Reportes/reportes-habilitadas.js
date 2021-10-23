@@ -32,6 +32,7 @@ class ReportesHabilitadas extends React.Component{
             reportes: [],
             puestos: [],
             mensaje: 'Reporte de personas habilitadas para vacuna sin registrarse aún',
+            cantidad: 'Hola'
             
         };
 
@@ -44,7 +45,7 @@ class ReportesHabilitadas extends React.Component{
         axios.get(url).then(response => response.data)
              .then((data) => {
                 this.setState({ reportes: data});
-                console.log(this.state.reportes)
+                console.log(this.state.reportes);
         });
         console.log(this.state.reportes);
     }
@@ -66,11 +67,11 @@ class ReportesHabilitadas extends React.Component{
         });
 
         console.log(this.state.reportes);
-
     }
 
   
     render(){
+        let counter = 0;
         return(
            <div className="report_table">     
                 <Paper className="container" elevation={20}>
@@ -91,7 +92,8 @@ class ReportesHabilitadas extends React.Component{
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {this.state.reportes.map((reporte) => (
+                    {this.state.reportes.map((reporte) => {
+                        counter +=1; return(
                         <TableRow key={reporte.dpi}>
                         <TableCell component="th" scope="row">
                             {reporte.dpi}
@@ -100,8 +102,15 @@ class ReportesHabilitadas extends React.Component{
                         <TableCell align="right">{reporte.fecha_nacimiento}</TableCell>
                         <TableCell align="right">{reporte.genero}</TableCell>  
                         <TableCell align="right">{reporte.nacionalidad}</TableCell>
+                        </TableRow>);
+                    })}
+                         <TableRow >
+                        <TableCell component="th" scope="row"></TableCell>
+                        <TableCell align="right"></TableCell>
+                        <TableCell align="right"></TableCell>
+                        <TableCell align="right">TOTAL</TableCell>  
+                        <TableCell align="right">{counter}</TableCell>
                         </TableRow>
-                    ))}
                     </TableBody>
                 </StyledTable>
                 </Grid>
