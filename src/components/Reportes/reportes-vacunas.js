@@ -94,12 +94,12 @@ class ReportesVacunas extends React.Component{
            <div className="report_table">     
                 <Paper className="container" elevation={20}>
                 <Grid container direction={"column"} spacing={3}>
-                    <h1>Detalle de Vacunas Diario por centro</h1>
+                    <h1>Detalle de vacunas diario por centro</h1>
                 <p>Escoja un centro de vacunación y una fecha</p>
                 <Grid item className="text-together">
                     <FormControl className="outlined-short" variant ="outlined">
-                        <InputLabel>Filtrar por centro</InputLabel>
-                        <Select label="Filtrar por centro" onChange={e=>this.getData(e.target.value, this.state.fecha)}>
+                        <InputLabel>Escoger centro</InputLabel>
+                        <Select label="Escoger centro" onChange={e=>this.getData(e.target.value, this.state.fecha)}>
                             <MenuItem value={0}>Todos</MenuItem>
                             {this.state.puestos.map((puesto)=>(
                                 <MenuItem key={puesto.id_puesto} value={puesto.id_puesto}>{puesto.nombre}</MenuItem>
@@ -107,15 +107,15 @@ class ReportesVacunas extends React.Component{
                         </Select>
                     </FormControl> 
                     <hr/>
-                    <TextField className="outlined-short" label="Fecha Final" type="date" variant="outlined" onChange={e=>this.getData(this.state.centro, e.target.value)} InputLabelProps={{shrink: true }}/>
+                    <TextField className="outlined-short" label="Escoger día" type="date" variant="outlined" onChange={e=>this.getData(this.state.centro, e.target.value)} InputLabelProps={{shrink: true }}/>
                 </Grid>
                 
                 <StyledTable className="customized-table" id="tabla-vacunas-centros">
                     <TableHead >
-                    <TableRow id="name-centros">
+                    <TableRow id="name-centros-vacuna">
                         {this.state.mensajeCentro}
                     </TableRow>
-                    <TableRow id="name-centros-fecha">
+                    <TableRow id="name-centros-fecha-vacuna">
                         {this.state.mensajeFechas}
                     </TableRow>
                     <TableRow className="table-header">
