@@ -4,6 +4,8 @@ import MenuBar from "../AppBar/appBar.js";
 import {LoginContext} from "../../Context/LoginContext.js";
 import Footer from '../Footer/footer.js';
 import ReportesCentro from './reportes-centro';
+import ReportesVacunas from './reportes-vacunas';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 
 class Reportes extends React.Component{
@@ -27,7 +29,7 @@ class Reportes extends React.Component{
                 <MenuBar/>
                 <div className="page">
                     <ReportesCentro/>
-                    
+                    <ReportesVacunas/>
                 </div>
                 <Footer/>
             </div>
