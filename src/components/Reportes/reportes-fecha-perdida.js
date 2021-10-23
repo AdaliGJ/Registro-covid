@@ -30,17 +30,13 @@ class ReportesCitaPerdida extends React.Component{
         super(props);
         this.state={
             reportes: [],
-            puestos: [],
-            mensaje: 'Reporte de personas habilitadas para vacuna sin registrarse aún',
-            cantidad: 'Hola'
-            
         };
 
         this.getData=this.getData.bind(this);
     }
     
     getData=()=>{
-        const url = 'http://localhost/scripts/habilitadas_reporte.php';
+        const url = 'http://localhost/scripts/citas_perdidas.php';
        
         axios.get(url).then(response => response.data)
              .then((data) => {
@@ -59,14 +55,7 @@ class ReportesCitaPerdida extends React.Component{
 
         this.getData();
 
-        const url = 'http://localhost/scripts/centros.php';
 
-        axios.get(url).then(response => response.data)
-             .then((data) => {
-                this.setState({puestos: data});
-        });
-
-        console.log(this.state.reportes);
     }
 
   
@@ -85,27 +74,30 @@ class ReportesCitaPerdida extends React.Component{
                     <TableRow className="table-header">
                         <StyledTableCell>DPI Persona</StyledTableCell>
                         <StyledTableCell align="right">Nombre Completo</StyledTableCell>
-                        <StyledTableCell align="right">Fecha de Nacimiento</StyledTableCell>
-                        <StyledTableCell align="right">Género persona</StyledTableCell>
-                        <StyledTableCell align="right">Nacionalidad</StyledTableCell>
+                        <StyledTableCell align="right">Fecha programada</StyledTableCell>
+                        <StyledTableCell align="right">Dosis saltada</StyledTableCell>
+                        <StyledTableCell align="right">Centro de Vacunación</StyledTableCell>
+                        <StyledTableCell align="right">Nombre del Centro</StyledTableCell>
                        
                     </TableRow>
                     </TableHead>
                     <TableBody>
                     {this.state.reportes.map((reporte) => {
                         counter +=1; return(
-                        <TableRow key={reporte.dpi}>
+                        <TableRow key={reporte.dpi_persona + reporte.fecha_dosis}>
                         <TableCell component="th" scope="row">
-                            {reporte.dpi}
+                            {reporte.dpi_persona}
                         </TableCell>
-                        <TableCell align="right">{reporte.nombre_completo}</TableCell>
-                        <TableCell align="right">{reporte.fecha_nacimiento}</TableCell>
-                        <TableCell align="right">{reporte.genero}</TableCell>  
-                        <TableCell align="right">{reporte.nacionalidad}</TableCell>
+                        <TableCell align="right">{reporte.nombre}</TableCell>
+                        <TableCell align="right">{reporte.fecha_dosis}</TableCell>
+                        <TableCell align="right">{reporte.dosis_saltada}</TableCell>  
+                        <TableCell align="right">{reporte.puesto_registro}</TableCell>
+                        <TableCell align="right">{reporte.nombre_centro}</TableCell>
                         </TableRow>);
                     })}
                          <TableRow >
                         <TableCell component="th" scope="row"></TableCell>
+                        <TableCell align="right"></TableCell>
                         <TableCell align="right"></TableCell>
                         <TableCell align="right"></TableCell>
                         <TableCell align="right">TOTAL</TableCell>  
@@ -116,9 +108,9 @@ class ReportesCitaPerdida extends React.Component{
                 </Grid>
                 <ReactHTMLTableToExcel
                     className="download-table-xls-button"
-                    table="tabla-habilitadas"
-                    filename="tabla-personas-habilitadas"
-                    sheet="habilitadas-sin-registrar"
+                    table="tabla-citas-perdidas"
+                    filename="tabla-citas-perdidas"
+                    sheet="citas-perdidas"
                     buttonText="DESCARGAR HOJA DE CÁLCULO"
                     />
                 
