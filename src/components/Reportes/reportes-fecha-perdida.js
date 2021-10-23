@@ -25,11 +25,12 @@ const StyledTableCell = withStyles({
 
 
 
-class ReportesHabilitadas extends React.Component{
+class ReportesCitaPerdida extends React.Component{
     constructor(props){
         super(props);
         this.state={
             reportes: [],
+            puestos: [],
             mensaje: 'Reporte de personas habilitadas para vacuna sin registrarse aún',
             cantidad: 'Hola'
             
@@ -58,6 +59,14 @@ class ReportesHabilitadas extends React.Component{
 
         this.getData();
 
+        const url = 'http://localhost/scripts/centros.php';
+
+        axios.get(url).then(response => response.data)
+             .then((data) => {
+                this.setState({puestos: data});
+        });
+
+        console.log(this.state.reportes);
     }
 
   
@@ -67,11 +76,11 @@ class ReportesHabilitadas extends React.Component{
            <div className="report_table">     
                 <Paper className="container" elevation={20}>
                 <Grid container direction={"column"} spacing={3}>
-                    <h1>Personas habilitadas sin registrarse</h1>
-                <StyledTable className="customized-table" id="tabla-habilitadas">
+                    <h1> Personas registradas que no acudieron a su cita</h1>
+                <StyledTable className="customized-table" id="tabla-citas-perdidas">
                     <TableHead >
-                    <TableRow id="name-habilitadas">
-                        {this.state.mensaje}
+                    <TableRow id="name-cita">
+                        Personas registradas que no acudieron a su cita
                     </TableRow>
                     <TableRow className="table-header">
                         <StyledTableCell>DPI Persona</StyledTableCell>
@@ -118,4 +127,4 @@ class ReportesHabilitadas extends React.Component{
         );
     }
 }
-export default ReportesHabilitadas;
+export default ReportesCitaPerdida;

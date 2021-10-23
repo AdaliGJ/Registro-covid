@@ -7,6 +7,7 @@ import ReportesCentro from './reportes-centro';
 import ReportesVacunas from './reportes-vacunas';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import ReportesHabilitadas from './reportes-habilitadas';
+import ReportesCitaPerdida from './reportes-fecha-perdida';
 
 
 class Reportes extends React.Component{
@@ -33,6 +34,7 @@ class Reportes extends React.Component{
                     <ReportesCentro/>
                     <ReportesVacunas/>
                     <ReportesHabilitadas/>
+                    <ReportesCitaPerdida/>
                 </div>
                 <Footer/>
             </div>
