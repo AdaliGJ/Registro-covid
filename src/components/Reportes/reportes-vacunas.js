@@ -129,7 +129,7 @@ class ReportesVacunas extends React.Component{
                     </TableHead>
                     <TableBody>
                     {this.state.reportes.map((reporte) => (
-                        <TableRow key={reporte.dpi_persona + reporte.fecha_dosis}>
+                        <TableRow key={reporte.puesto_registro + reporte.fecha + reporte.vacuna}>
                         <TableCell component="th" scope="row">
                             {reporte.puesto_registro}
                         </TableCell>

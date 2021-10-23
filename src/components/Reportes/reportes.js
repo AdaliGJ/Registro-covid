@@ -6,6 +6,7 @@ import Footer from '../Footer/footer.js';
 import ReportesCentro from './reportes-centro';
 import ReportesVacunas from './reportes-vacunas';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import ReportesHabilitadas from './reportes-habilitadas';
 
 
 class Reportes extends React.Component{
@@ -30,6 +31,7 @@ class Reportes extends React.Component{
                 <div className="page">
                     <ReportesCentro/>
                     <ReportesVacunas/>
+                    <ReportesHabilitadas/>
                 </div>
                 <Footer/>
             </div>
