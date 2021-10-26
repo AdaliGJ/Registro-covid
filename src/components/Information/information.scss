@@ -13,7 +13,7 @@ $gris: #120e15;
     position: absolute;
     top: 0%;
     left: 0%;
-    height: 100%;
+    height: max-content;
     width: 100%;
     background: $gris;
     background: linear-gradient(90deg, $gris 0%, $morado 35%, $gris 100%);
@@ -21,7 +21,7 @@ $gris: #120e15;
 
 .contact_form{
     color: $morado;
-    height: 80vh;
+    height: max-content;
     width: 80vw;
     margin: auto;
     margin-top: 5vh;

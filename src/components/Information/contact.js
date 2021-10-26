@@ -7,7 +7,11 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import CardActions from '@material-ui/core/CardActions';
 import Footer from '../Footer/footer.js';
+import { Alert } from '@material-ui/lab';
 import './information.scss'
+import emailjs from 'emailjs-com';
+
+
 
 
 class Contact extends React.Component{
@@ -17,18 +21,40 @@ class Contact extends React.Component{
             dPI: '',
             full_name: '',
             email: '',
-            message: ''
+            message: '',
+            exito: 0
         }
 
         this.mySubmit=this.mySubmit.bind(this);
     }
 
-    mySubmit(event){
+    mySubmit=(event)=>{
         console.log('this is the submit ' + this.state.dPI);
         console.log('this is the submit ' + this.state.full_name);
         console.log('this is the submit ' + this.state.email);
         console.log('this is the submit ' + this.state.message);
-    }
+
+      
+
+        emailjs.sendForm('service_regh45v', 'template_w0tcaex', '#form-contact', 'user_r9MFbHG6TPbku9LgciHCj')
+            .then((response)=>{
+                console.log('¡Éxito!', response.status, response.text);
+                this.setState({
+                    dPI: '',
+                    full_name: '',
+                    email: '',
+                    message: '',
+                    exito: 1
+                });  
+            }, (error)=> {
+                console.log('FAILED...', error);
+                this.setState({
+                    exito: 2
+                });  
+            });
+
+            
+        }
     
     render(){
         return(
@@ -36,22 +62,25 @@ class Contact extends React.Component{
                 <MenuBar/>
                 <Card className="contact_form" mt={5}>
                 <CardContent className="content">
-                <div className="contact-data">
+                <form className="contact-data" id="form-contact">
                     <h2>Contáctenos si tiene una consulta</h2>
                     <Grid container direction={"column"} spacing={3}>
                         <Grid item>
-                            <TextField className="outlined-required" label="DPI" type="number" variant="outlined" onInput={e=>this.setState({dPI: e.target.value})}/>
+                            <TextField className="outlined-required" label="DPI" type="number" variant="outlined" onInput={e=>this.setState({dPI: e.target.value})} value={this.state.dPI} name="dpi"/>
                         </Grid>
                         <Grid item id="text-together">    
-                            <TextField className="outlined-short" label="Nombre Completo" type="text" variant="outlined" onInput={e=>this.setState({full_name: e.target.value})}/>
+                            <TextField className="outlined-short" label="Nombre Completo" type="text" variant="outlined" onInput={e=>this.setState({full_name: e.target.value})} value={this.state.full_name} name="nombre"/>
                             <hr/>
-                            <TextField className="outlined-short" label="Email" type="email" variant="outlined" onInput={e=>this.setState({email: e.target.value})}/>
+                            <TextField className="outlined-short" label="Email" type="email" variant="outlined" onInput={e=>this.setState({email: e.target.value})} name="email" value={this.state.email}/>
                         </Grid>
                             <Grid item>    
-                            <TextField className="outlined-required" label="Mensaje" multiline rows={5} variant="outlined" onInput={e=>this.setState({message: e.target.value})}/>
+                            <TextField className="outlined-required" label="Mensaje" multiline rows={5} variant="outlined" onInput={e=>this.setState({message: e.target.value})} value={this.state.message} name="message"/>
                         </Grid>
+                        {this.state.exito==1?
+                        <Alert severity="success">Mensaje enviado con éxito, le responderemos tan pronto nos sea posible</Alert>: 
+                        this.state.exito ==2? <Alert  severity="error">Ha ocurrido un error al enviar el mensaje, intente de nuevo</Alert>: <p></p>}
                     </Grid>
-                    </div>
+                    </form>
                 </CardContent>
                 <CardActions>
                     <Button id="send" variant="contained" onClick={this.mySubmit}>Enviar Mensaje</Button>
