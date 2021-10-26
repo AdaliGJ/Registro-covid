@@ -2,3 +2,17 @@ $verde: #0ab200;
 $morado: #230043;
 $blanco: #ffffff;
 $gris: #120e15;
+
+#pdf_descargar{
+    background-color: $verde;
+    color: $blanco;
+    margin-left: 5vw;
+}
+
+p, h1{
+   margin-left: 5vw;
+}
+
+#sidoc, #noant{
+    display: none;
+}
