@@ -59,7 +59,8 @@ class UserData extends React.Component{
             registrado: true,
             hoy: '',
             fecha_incorrecta: false,
-            open: false
+            open: false,
+            dosis: 0
         }
 
         this.handleOpen=this.handleOpen.bind(this);
@@ -99,7 +100,8 @@ class UserData extends React.Component{
                     id_vacuna: this.state.userinfo.vacuna,
                     hoy: this.state.userinfo.hoy,
                     registrado: true,
-                    fecha_incorrecta: false
+                    fecha_incorrecta: false,
+                    dosis: this.state.userinfo.dosis
                 });
                 if(this.state.hoy != this.state.primera_dosis && this.state.hoy != this.state.segunda_dosis && this.state.hoy != this.state.tercera_dosis){
                     this.setState({
@@ -208,21 +210,24 @@ class UserData extends React.Component{
                                 </Select>
                             </FormControl> 
                         </Grid> 
+                        {this.state.dosis == 1 || this.state.dosis==2 || this.state.dosis==3?
                         <Grid item className="text-together">
                             <TextField className="outlined-required-large" label="Fecha Primera dosis" type="date" inputProps={{ readOnly: true, }} variant="outlined" onInput={e=>this.setState({primera_dosis: e.target.value})} InputLabelProps={{shrink: true }} value={this.state.primera_dosis}/>
                             <hr/>
                             <VacunaAplicada change={e=>this.setState({primera_aplicada: e.target.value})} value={this.state.primera_aplicada}/>
-                        </Grid>
+                        </Grid>:null}
+                        {this.state.dosis==2 || this.state.dosis==3?
                         <Grid item className="text-together">
                             <TextField className="outlined-required-large" label="Fecha Segunda dosis" type="date" inputProps={{ readOnly: true, }} variant="outlined" onInput={e=>this.setState({segunda_dosis: e.target.value})} InputLabelProps={{shrink: true }} value={this.state.segunda_dosis}/>
                             <hr/>
                             <VacunaAplicada change={e=>this.setState({segunda_aplicada: e.target.value})} value={this.state.segunda_aplicada}/>
-                        </Grid>
+                        </Grid>:null}
+                        {this.state.dosis==3?
                         <Grid item className="text-together">
                             <TextField className="outlined-required-large" label="Fecha Tercera dosis" type="date" inputProps={{ readOnly: true, }} variant="outlined" onInput={e=>this.setState({tercera_dosis: e.target.value})} InputLabelProps={{shrink: true }} value={this.state.tercera_dosis}/>
                             <hr/>
                             <VacunaAplicada change={e=>this.setState({tercera_aplicada: e.target.value})} value={this.state.tercera_aplicada}/>
-                        </Grid>
+                        </Grid>:null}
                     </Grid>
                     </div>
                 </CardContent>
