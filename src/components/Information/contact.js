@@ -9,7 +9,8 @@ import CardActions from '@material-ui/core/CardActions';
 import Footer from '../Footer/footer.js';
 import { Alert } from '@material-ui/lab';
 import './information.scss'
-import emailjs from 'emailjs-com';
+//import emailjs from 'emailjs-com';
+import axios from 'axios';
 
 
 
@@ -34,9 +35,35 @@ class Contact extends React.Component{
         console.log('this is the submit ' + this.state.email);
         console.log('this is the submit ' + this.state.message);
 
+
+        const url = 'http://localhost/scripts/contact.php';
+
+        let formData = new FormData();
+        formData.append('dpi', this.state.dPI);
+        formData.append('nombre', this.state.full_name);
+        formData.append('email', this.state.email);
+        formData.append('mensaje', this.state.message);
+
+        axios.post(url, formData)
+        .then((response)=> {
+            console.log(response)
+            this.setState({
+                dPI: '',
+                full_name: '',
+                email: '',
+                message: '',
+                exito: 1
+            });  
+        })
+        .catch((response)=> {
+            console.log(response);
+            this.setState({
+                exito: 2
+            });
+        });
       
 
-        emailjs.sendForm('service_regh45v', 'template_w0tcaex', '#form-contact', 'user_r9MFbHG6TPbku9LgciHCj')
+       /* emailjs.sendForm('service_regh45v', 'template_w0tcaex', '#form-contact', 'user_r9MFbHG6TPbku9LgciHCj')
             .then((response)=>{
                 console.log('¡Éxito!', response.status, response.text);
                 this.setState({
@@ -51,7 +78,7 @@ class Contact extends React.Component{
                 this.setState({
                     exito: 2
                 });  
-            });
+            });*/
 
             
         }
