@@ -60,17 +60,29 @@ class UserData extends React.Component{
             hoy: '',
             fecha_incorrecta: false,
             open: false,
-            dosis: 0
+            dosis: 1
         }
 
         this.handleOpen=this.handleOpen.bind(this);
         this.getData=this.getData.bind(this);
         this.updateData=this.updateData.bind(this);
         this.aceptar=this.aceptar.bind(this);
+        this.getDosis=this.getDosis.bind(this);
       
     }
 
-    
+    getDosis=(vacuna)=>{
+        this.setState({id_vacuna: vacuna});
+
+        const url = 'http://localhost/scripts/vacunas_dosis.php';
+
+        axios.get(url, {params: {vacuna: vacuna}}).then(response => response.data)
+             .then((data) => {
+                this.setState({dosis: data[0].dosis});
+                console.log(data);
+        });
+
+    }
 
     handleOpen=()=>{
         this.setState({open: !this.state.open})  
@@ -203,19 +215,19 @@ class UserData extends React.Component{
                             <hr/>
                             <FormControl className="outlined-required" variant ="outlined">
                                 <InputLabel>Vacuna</InputLabel>
-                                <Select label="Vacuna" displayEmpty onChange={e=>this.setState({id_vacuna: e.target.value})} value={this.state.id_vacuna}>
+                                <Select label="Vacuna" displayEmpty onChange={e=>this.getDosis(e.target.value)} value={this.state.id_vacuna}>
                                     {this.state.vacunas.map((vac)=>(
                                         <MenuItem key={vac.id_vacuna} value={vac.id_vacuna}  type="number">{vac.nombre}</MenuItem>
                                     ))}
                                 </Select>
                             </FormControl> 
                         </Grid> 
-                        {this.state.dosis == 1 || this.state.dosis==2 || this.state.dosis==3?
+                        
                         <Grid item className="text-together">
                             <TextField className="outlined-required-large" label="Fecha Primera dosis" type="date" inputProps={{ readOnly: true, }} variant="outlined" onInput={e=>this.setState({primera_dosis: e.target.value})} InputLabelProps={{shrink: true }} value={this.state.primera_dosis}/>
                             <hr/>
                             <VacunaAplicada change={e=>this.setState({primera_aplicada: e.target.value})} value={this.state.primera_aplicada}/>
-                        </Grid>:null}
+                        </Grid>
                         {this.state.dosis==2 || this.state.dosis==3?
                         <Grid item className="text-together">
                             <TextField className="outlined-required-large" label="Fecha Segunda dosis" type="date" inputProps={{ readOnly: true, }} variant="outlined" onInput={e=>this.setState({segunda_dosis: e.target.value})} InputLabelProps={{shrink: true }} value={this.state.segunda_dosis}/>

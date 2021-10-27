@@ -47,19 +47,12 @@ class Profile extends React.Component{
             userinfo: []
         }
 
-        this.mySubmit=this.mySubmit.bind(this);
+        this.solicitarPermiso=this.solicitarPermiso.bind(this);
         this.register=this.register.bind(this);
+    
     }
 
-
-    mySubmit(event){
-        console.log('this is the submit ' + this.state.dPI);
-        console.log('this is the submit ' + this.state.full_name);
-        console.log('this is the submit ' + this.state.email1);
-        console.log('this is the submit ' + this.state.tel1);
-    }
-
-    register(){
+    register=()=>{
         const url = 'http://localhost/scripts/perfil.php';
 
         let formData = new FormData();
@@ -78,6 +71,28 @@ class Profile extends React.Component{
             console.log(response);
         });
         console.log(this.state.centro_vacunacion);
+    }
+
+
+
+    
+
+    solicitarPermiso=()=>{
+        const url = 'http://localhost/scripts/enviar_solicitud.php';
+
+        let formData = new FormData();
+
+        formData.append('dpi', this.state.dPI);
+        formData.append('nombre', this.state.full_name);
+
+
+        axios.post(url, formData)
+        .then((response) => {
+            console.log(response);
+        })
+        .catch( (response) =>{
+            console.log(response);
+        });
     }
 
     
@@ -140,20 +155,23 @@ class Profile extends React.Component{
                     <div className="profile-data">
                     <h2>Datos de su usuario</h2>
                     <Grid container direction={"column"} spacing={3}>
+                    {this.state.tipo_usuario==1?
+                    <Button id='env_sol' onClick={this.register}>Solicitar permisos de Empleado</Button>
+                    :null}
                         <Grid item className="text-together">
                             <TextField className="outlined-required" label="DPI" type="number" variant="outlined" onInput={e=>this.setState({dPI: e.target.value})} inputProps={{ readOnly: true, }} defaultValue={this.context.username}/>
                             <hr/>
                             <TextField className="outlined-short" label="Nombre Completo" type="text" variant="outlined" onInput={e=>this.setState({full_name: e.target.value})} inputProps={{ readOnly: true}} value={this.state.full_name}/>
                         </Grid>
                         <Grid item className="text-together">    
-                            <TextField className="outlined-short" label="Email" /*type="email"*/ inputProps={{ readOnly: true, }} variant="outlined" onInput={e=>this.setState({email1: e.target.value})}  value={this.state.email1}/>
+                            <TextField className="outlined-short" label="Email" /*type="email"*/ /*inputProps={{ readOnly: true, }}*/ variant="outlined" onInput={e=>this.setState({email1: e.target.value})}  value={this.state.email1}/>
                             <hr/>
-                            <TextField className="outlined-short" label="Email 2 (opcional)" inputProps={{ readOnly: true, }} InputLabelProps={{shrink: true }} /*type="email"*/ variant="outlined" onInput={e=>this.setState({email2: e.target.value})} value={this.state.email2}/>
+                            <TextField className="outlined-short" label="Email 2 (opcional)" /*inputProps={{ readOnly: true, }}*/ InputLabelProps={{shrink: true }} /*type="email"*/ variant="outlined" onInput={e=>this.setState({email2: e.target.value})} value={this.state.email2}/>
                         </Grid>
                             <Grid item className="text-together">
-                            <TextField className="outlined-required" label="Teléfono" type="number" variant="outlined"  inputProps={{ readOnly: true, }} onInput={e=>this.setState({tel1: e.target.value})} inputProps={{ shrink: true}} value={this.state.tel1}/>
+                            <TextField className="outlined-required" label="Teléfono" type="number" variant="outlined"  /*inputProps={{ readOnly: true, }}*/ onInput={e=>this.setState({tel1: e.target.value})} inputProps={{ shrink: true}} value={this.state.tel1}/>
                             <hr/>
-                            <TextField className="outlined-short" label="Teléfono 2 (opcional)" type="number" InputLabelProps={{shrink: true }} inputProps={{ readOnly: true, }} variant="outlined" onInput={e=>this.setState({tel2: e.target.value})} value={this.state.tel2}/>
+                            <TextField className="outlined-short" label="Teléfono 2 (opcional)" type="number" InputLabelProps={{shrink: true }} /*inputProps={{ readOnly: true, }}*/ variant="outlined" onInput={e=>this.setState({tel2: e.target.value})} value={this.state.tel2}/>
                         </Grid>
                         <Grid item className="text-together">    
                             <TextField className="outlined-required" label="Nacionalidad" type="text" variant="outlined" onInput={e=>this.setState({nacionalidad: e.target.value})} inputProps={{ readOnly: true, }} value={this.state.nacionalidad}/>    
