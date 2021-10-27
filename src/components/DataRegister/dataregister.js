@@ -37,11 +37,13 @@ class DataRegister extends React.Component{
             centro_vacunacion: null,
             centros: [],
             userinfo: [], 
-            exito: false
+            exito: false,
+            enviado: 0
         }
 
         this.mySubmit=this.mySubmit.bind(this);
         this.register=this.register.bind(this);
+        this.sendEmail=this.sendEmail.bind(this);
     }
 
 
@@ -51,6 +53,40 @@ class DataRegister extends React.Component{
         console.log('this is the submit ' + this.state.email1);
         console.log('this is the submit ' + this.state.tel1);
     }
+
+    sendEmail=()=>{
+        const url = 'http://localhost/scripts/confirmar.php';
+
+        let formData = new FormData();
+
+        formData.append('dpi', this.state.dPI);
+        formData.append('nombre', this.state.full_name);
+        formData.append('email1', this.state.email1);
+        formData.append('email2', this.state.email2);
+        formData.append('centro', this.state.centro_vacunacion);
+
+        axios.post(url, formData)
+        .then((response)=> {
+            console.log(response)
+            this.setState({
+                enviado: 1,
+                email1: '',
+                centro_vacunacion: null,
+                dpi: null,
+                full_name: '',
+                email2: ''
+            });  
+        })
+        .catch((response)=> {
+            console.log(response);
+            this.setState({
+                enviado: 2
+            });
+        });
+
+
+    }
+
 
     register(){
         const url = 'http://localhost/scripts/registrar_datos.php';
@@ -69,20 +105,18 @@ class DataRegister extends React.Component{
                 exito: true
             });
             this.setState({
-                dpi: null,
-                full_name: '',
                 nacionalidad: '',
-                email1: '',
-                email2: '',
                 tel1: '',
                 tel2: '',
                 fecha_nacimiento: '',
                 sexo: '',
                 enfermedad: '',
                 trabajo: '',
-                centro_vacunacion: null,
+               
             });
             console.log(response);
+            this.sendEmail();
+
         })
         .catch((response)=>{
             console.log(response);
@@ -93,7 +127,8 @@ class DataRegister extends React.Component{
         console.log(this.state.centro_vacunacion);
     }
 
-    
+   
+
     componentDidMount(){
 
         const context = this.context;
@@ -138,6 +173,7 @@ class DataRegister extends React.Component{
             console.log(this.state.userinfo);
     });
 
+   
         
     }
     
