@@ -73,20 +73,33 @@ class Footer extends Component{
                                 <FooterBox link='/information' title="Información"/>
                                 <FooterBox link='/news' title="Noticias"/>
                                 <FooterBox link='/contact' title="Contacto"/>
+                                {this.state.tipo_usuario==3?
+                                    <FooterBox link='/reportes' title="Reportes"/>:null}
                             </Grid>
                             <Grid item xs={4}> 
+                               
                                 <Box borderBottom={1}>Usuarios</Box>
-                                <FooterBox link='/register' title="Registro" name={this.state.dpi_usuario ? "nofoot":"sifoot"}/>
-                                <FooterBox link='/login' title="Login" name={this.state.dpi_usuario ? "nofoot":"sifoot"}/>
-                                <FooterBox link='/mi-cuenta' title="Mi cuenta" name={this.state.dpi_usuario ? "sifoot":"nofoot"}/>
+                                {!this.state.dpi_usuario?
+                                    <div>
+                                        <FooterBox link='/register' title="Registro"/>
+                                        <FooterBox link='/login' title="Login" />
+                                    </div>:
+                                    <div>
+                                        <FooterBox link='/mi-cuenta' title="Mi cuenta"/>
+                                        <FooterBox link='/mi-proceso' title="Mi Proceso de vacunación"/>
+                                    </div>}
                                 <FooterBox link='/health-employees' title="Módulo empleados" name={this.context.tipoUsuario==2 ? "sifoot":"nofoot"}/>
-                                <FooterBox link='/admin' title="Administración usuarios" name={this.context.tipoUsuario==3 ? "sifoot":"nofoot"}/>
-                                <FooterBox link='/Vacunas' title="Ingreso Vacunas" name={this.context.tipoUsuario==3 ? "sifoot":"nofoot"}/>
-                                <FooterBox link='/habilitar-poblacion' title="Habilitar Personas" name={this.context.tipoUsuario==3 ? "sifoot":"nofoot"}/>
-                                <FooterBox link='/import-users' title="Ingresar Población" name={this.context.tipoUsuario==3 ? "sifoot":"nofoot"}/>
-                                <FooterBox link='/information-options' title="Agregar Datos Selección" name={this.context.tipoUsuario==3 ? "sifoot":"nofoot"}/>
-                                <FooterBox link='/solicitudes' title="Permisos de Empleado" name={this.context.tipoUsuario==3 ? "sifoot":"nofoot"}/>
-                                <FooterBox link='/primera-dosis' title="Asignar Primera Dosis" name={this.context.tipoUsuario==3 ? "sifoot":"nofoot"}/>
+                                {this.state.tipo_usuario==3?
+                                    <div>
+                                        <FooterBox link='/admin' title="Administración usuarios"/>
+                                        <FooterBox link='/Vacunas' title="Ingreso Vacunas" />
+                                        <FooterBox link='/habilitar-poblacion' title="Habilitar Personas" />
+                                        <FooterBox link='/import-users' title="Ingresar Población" />
+                                        <FooterBox link='/information-options' title="Agregar Datos Selección"/>
+                                        <FooterBox link='/solicitudes' title="Permisos de Empleado"/>
+                                        <FooterBox link='/primera-dosis' title="Asignar Primera Dosis"/>
+                                        
+                                </div>:null}
                             </Grid>
                             <Grid item xs={4}> 
                                 <Box borderBottom={1}>Redes sociales</Box>

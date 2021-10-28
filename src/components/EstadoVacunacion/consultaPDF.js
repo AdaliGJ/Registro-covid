@@ -207,11 +207,14 @@ class ConsultaPDF extends Component{
                     id_vacuna: '',
                     fecha_incorrecta: false,
                     registrado: false,
+                    doc_antiguo: false,
                     id_archivo:'',
                     completo:''
                 });
             } 
             
+        }).catch((response)=>{
+            console.log(response);
         });
     }
 
@@ -227,8 +230,12 @@ class ConsultaPDF extends Component{
 
         axios.get(url, {params: {dpi: context.username}}).then(response => response.data)
              .then((data) => {
-                this.setState({id_actual: data[0].id_archivo})
-                console.log(this.state.id_actual)
+                 if(data[0].id_archivo){
+                    this.setState({id_actual: data[0].id_archivo})
+                    console.log(this.state.id_actual)
+                }
+        }).catch((response)=>{
+            console.log(response);
         });
          
     }
