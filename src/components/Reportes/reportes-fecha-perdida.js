@@ -34,18 +34,25 @@ class ReportesCitaPerdida extends React.Component{
         super(props);
         this.state={
             reportes: [],
+            dosis: 0,
+            mensajeCentro: ''
         };
 
         this.getData=this.getData.bind(this);
     }
     
-    getData=()=>{
+    getData=(dosis)=>{
         const url = 'http://localhost/scripts/citas_perdidas.php';
        
-        axios.get(url).then(response => response.data)
+        axios.get(url, {params:{dosis: dosis}}).then(response => response.data)
              .then((data) => {
                 this.setState({ reportes: data});
                 console.log(this.state.reportes);
+                if(dosis!=0){
+                    this.setState({mensajeCentro: "Personas que no acudieron a su cita para su  " + dosis + " dosis."});
+                 }else{
+                     this.setState({mensajeCentro:"Personas que no acudieron a su cita de vacunación."});
+                 }
         });
         console.log(this.state.reportes);
     }
@@ -57,7 +64,7 @@ class ReportesCitaPerdida extends React.Component{
     componentDidMount(){
         console.log(this.state.reportes);
 
-        this.getData();
+        this.getData(0);
 
 
     }
@@ -69,20 +76,22 @@ class ReportesCitaPerdida extends React.Component{
            <div className="report_table">     
                 <Paper className="container" elevation={20}>
                 <Grid container direction={"column"} spacing={3}>
+                    <div className="report-search">
                     <h1> Personas registradas que no acudieron a su cita</h1>
                     <FormControl className="outlined-short" variant ="outlined">
-                        <InputLabel>Filtrar por centro</InputLabel>
-                        <Select label="Filtrar por centro" onChange={e=>this.getData(e.target.value, this.state.fecha1, this.state.fecha2)}>
-                            <MenuItem value={0}>Todos</MenuItem>
+                        <InputLabel>Filtrar por Dosis Saltada</InputLabel>
+                        <Select label="Filtrar por Dosis Saltada" onChange={e=>this.getData(e.target.value)}>
+                            <MenuItem value={0}>Cualquier Dosis</MenuItem>
                             <MenuItem value='primera'>Primera Dosis</MenuItem>
                             <MenuItem value='segunda'>Segunda Dosis</MenuItem>
                             <MenuItem value='tercera'>Tercera Dosis</MenuItem>
                         </Select>
                     </FormControl> 
+                    </div>
                 <StyledTable className="customized-table" id="tabla-citas-perdidas">
                     <TableHead >
                     <TableRow id="name-cita">
-                        Personas registradas que no acudieron a su cita
+                        {this.state.mensajeCentro}
                     </TableRow>
                     <TableRow className="table-header">
                         <StyledTableCell>DPI Persona</StyledTableCell>
