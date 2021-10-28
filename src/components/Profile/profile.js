@@ -11,6 +11,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import axios from 'axios';
+import Alert from '@material-ui/lab/Alert';
 import { LoginContext } from '../../Context/LoginContext.js';
 import Checkbox  from '@material-ui/core/Checkbox';
 import { FormControlLabel} from '@material-ui/core';
@@ -44,7 +45,9 @@ class Profile extends React.Component{
             enfermedad: '',
             trabajo: '',
             centro_vacunacion: '',
-            userinfo: []
+            userinfo: [],
+            solicitud: null,
+            enviada: false
         }
 
         this.solicitarPermiso=this.solicitarPermiso.bind(this);
@@ -89,9 +92,12 @@ class Profile extends React.Component{
         axios.post(url, formData)
         .then((response) => {
             console.log(response);
+            this.setState({enviada: true, 
+            solicitud: 1});
         })
         .catch( (response) =>{
             console.log(response);
+            this.setState({enviada: false});
         });
     }
 
@@ -102,8 +108,15 @@ class Profile extends React.Component{
         this.setState({dPI: context.username, 
         tipo_usuario: context.tipoUsuario});
         console.log(this.state.dPI);
+        
+        const url2 = 'http://localhost/scripts/eliminar_solicitudes.php';
 
-       
+        axios.get(url2, {params: {dpi: context.username}}).then(response => response.data)
+            .then((data) => {
+                this.setState({solicitud: data})
+                console.log(data);
+        });
+        
 
         const url = 'http://localhost/scripts/perfil.php';
         axios.get(url, {params: {dpi: context.username}}).then(response => response.data)
@@ -155,9 +168,12 @@ class Profile extends React.Component{
                     <div className="profile-data">
                     <h2>Datos de su usuario</h2>
                     <Grid container direction={"column"} spacing={3}>
-                    {this.state.tipo_usuario==1?
-                    <Button id='env_sol' onClick={this.register}>Solicitar permisos de Empleado</Button>
+                    {this.state.tipo_usuario==1 && this.state.solicitud!=1?
+                    <Button id='env_sol' onClick={this.solicitarPermiso}>Solicitar permisos de Empleado</Button>
                     :null}
+                    {this.state.enviada?
+                        <Alert severity='success'>Solicitud Enviada Exitosamente</Alert>
+                        :null}
                         <Grid item className="text-together">
                             <TextField className="outlined-required" label="DPI" type="number" variant="outlined" onInput={e=>this.setState({dPI: e.target.value})} inputProps={{ readOnly: true, }} defaultValue={this.context.username}/>
                             <hr/>
@@ -219,11 +235,12 @@ class Profile extends React.Component{
                                 <Checkbox change={e=>this.setState({tercera_aplicada: e.target.value})} checked={this.state.tercera_aplicada=="1"? true:false} value={this.state.tercera_aplicada}/>
                             } label='Aplicada'/>
                         </Grid>
-
-                     
                     </Grid>
                     </div>
                 </CardContent>
+                <CardActions className="action">
+                    <Button id="send" variant="contained" onClick={this.register}>Actualizar mis datos de contacto</Button>
+                </CardActions>
                 </Card>
             </div>
         );
