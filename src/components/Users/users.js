@@ -11,6 +11,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { Edit } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
+import { TablePagination } from '@material-ui/core';
 
 const StyledTableCell = withStyles({
     root: {
@@ -30,10 +31,14 @@ class UsersTable extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            usuarios: []
+            usuarios: [],
+            page: 0,
+            rowsPerPage: 10
         };
 
         this.mySubmit=this.mySubmit.bind(this);
+        this.handleChangePage=this.handleChangePage.bind(this);
+        this.handleChangeRowsPerPage=this.handleChangeRowsPerPage.bind(this);
     }
 
     /*13/09/2021*/
@@ -46,8 +51,20 @@ class UsersTable extends React.Component{
                 console.log(this.state.usuarios);
                 console.log(data);
         });
+
         
     }
+
+     handleChangePage = (event, newPage) => {
+        this.setState({page: newPage});
+      };
+
+      handleChangeRowsPerPage = event => {
+        this.setState({rowsPerPage: parseInt(event.target.value, 10)}); 
+        this.setState({page: 0});
+      };
+
+   
 
     mySubmit(event){
         event.preventDefault();
@@ -72,7 +89,9 @@ class UsersTable extends React.Component{
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {this.state.usuarios.map((usuario) => (
+                    {this.state.usuarios
+                        .slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage)
+                        .map((usuario) => (
                         <TableRow key={usuario.dpi}>
                         <TableCell component="th" scope="row">
                             {usuario.dpi}
@@ -87,6 +106,15 @@ class UsersTable extends React.Component{
                     ))}
                     </TableBody>
                 </StyledTable>
+                <TablePagination
+                    rowsPerPageOptions={[5, 10, 25]}
+                    component="div"
+                    count={this.state.usuarios.length}
+                    page={this.state.page}
+                    onPageChange={this.handleChangePage}
+                    rowsPerPage={this.state.rowsPerPage}
+                    onRowsPerPageChange={e=>this.handleChangeRowsPerPage(e)}
+                    />
                 </Paper>
            </div> 
         );
