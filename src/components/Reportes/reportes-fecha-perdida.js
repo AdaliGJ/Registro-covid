@@ -76,8 +76,9 @@ class ReportesCitaPerdida extends React.Component{
            <div className="report_table">     
                 <Paper className="container" elevation={20}>
                 <Grid container direction={"column"} spacing={3}>
-                    <div className="report-search">
                     <h1> Personas registradas que no acudieron a su cita</h1>
+                    <p>Escoja la dosis por la que desa filtrar la información </p>
+                    <Grid item className="text-together">
                     <FormControl className="outlined-short" variant ="outlined">
                         <InputLabel>Filtrar por Dosis Saltada</InputLabel>
                         <Select label="Filtrar por Dosis Saltada" onChange={e=>this.getData(e.target.value)}>
@@ -87,7 +88,8 @@ class ReportesCitaPerdida extends React.Component{
                             <MenuItem value='tercera'>Tercera Dosis</MenuItem>
                         </Select>
                     </FormControl> 
-                    </div>
+                    </Grid>
+                   
                 <StyledTable className="customized-table" id="tabla-citas-perdidas">
                     <TableHead >
                     <TableRow id="name-cita">
