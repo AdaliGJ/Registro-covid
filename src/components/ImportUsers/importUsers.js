@@ -74,7 +74,7 @@ class ImportUsers extends React.Component{
                                 <TextField type="file" name="csv-file" id="csv-file" inputProps={{ accept: '.csv' }}  variant="outlined" onChange={this.handleChange}/>  
                                 <label htmlFor="csv-file"> 
                                     <Button id="upload-csv" variant="contained" component="span">Seleccionar archivo</Button>
-                                    <p>{this.state.csv !=''? this.state.csv : "Ningún archivo seleccionado"}</p>
+                                    <p id="name-arch">{this.state.csv !=''? this.state.csv : "Ningún archivo seleccionado"}</p>
                                 </label> 
                                 </Grid>
                                 <Grid item >
