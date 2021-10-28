@@ -10,6 +10,10 @@ import Footer from '../Footer/footer.js';
 import Alert from '@material-ui/lab/Alert';
 import axios from 'axios';
 import VacunasTabla from './vacunas-table.js';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import './vacunas.scss'
 
 
@@ -92,8 +96,16 @@ class InsertVacunas extends React.Component{
                             <hr/>
                             <TextField className="outlined-short" label="Laboratorio" type="text" variant="outlined" onInput={e=>this.setState({laboratorio: e.target.value})} value={this.state.laboratorio}/>
                         </Grid>
-                        <Grid item className="together">    
-                            <TextField className="outlined-short" label="Dosis" type="number" variant="outlined" onInput={e=>this.setState({dosis: e.target.value})} value={this.state.dosis}/>
+                        <Grid item className="together">
+                            <FormControl className="outlined-short" variant ="outlined">
+                                <InputLabel>Dosis</InputLabel>
+                                <Select label="Dosis" displayEmpty onChange={e=>this.setState({dosis: e.target.value})}  value={this.state.dosis}>
+                                    <MenuItem value={1}>1</MenuItem>
+                                    <MenuItem value={2}>2</MenuItem>
+                                    <MenuItem value={3}>3</MenuItem>
+                                </Select>
+                            </FormControl>       
+                           
                             <hr/>
                             <TextField className="outlined-short" label="Días siguiente dosis" type="number" variant="outlined" onInput={e=>this.setState({dias: e.target.value})} value={this.state.dias}/>
                         </Grid>

@@ -5,6 +5,10 @@ import  Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
 import { Grid } from '@material-ui/core';
 import { LoginContext } from '../../Context/LoginContext';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import { Edit } from '@material-ui/icons';
 import axios from 'axios';
 import './vacunas.scss';
@@ -62,7 +66,14 @@ class  UdpdateVacuna extends React.Component {
               <TextField className="modalfield" label="Laboratorio" type="text"   variant="outlined" onInput={e=>this.setState({lab: e.target.value})}  value={this.state.lab}/> 
             </Grid>
              <Grid item>
-              <TextField className="modalfield" label="Dosis" type="number"  variant="outlined" onInput={e=>this.setState({dosis: e.target.value})}  value={this.state.dosis}/> 
+              <FormControl className="modalfield" variant ="outlined">
+                  <InputLabel>Dosis</InputLabel>
+                  <Select label="Dosis" displayEmpty onChange={e=>this.setState({dosis: e.target.value})}  value={this.state.dosis}>
+                      <MenuItem value={1}>1</MenuItem>
+                      <MenuItem value={2}>2</MenuItem>
+                      <MenuItem value={3}>3</MenuItem>
+                  </Select>
+              </FormControl>       
             </Grid>
              <Grid item>
               <TextField className="modalfield" label="Días Siguiente dosis" type="number" variant="outlined" onInput={e=>this.setState({dias: e.target.value})}  value={this.state.dias}/> 
