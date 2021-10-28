@@ -9,6 +9,10 @@ import Paper from "@material-ui/core/Paper";
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { Grid } from '@material-ui/core';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const StyledTableCell = withStyles({
@@ -66,6 +70,15 @@ class ReportesCitaPerdida extends React.Component{
                 <Paper className="container" elevation={20}>
                 <Grid container direction={"column"} spacing={3}>
                     <h1> Personas registradas que no acudieron a su cita</h1>
+                    <FormControl className="outlined-short" variant ="outlined">
+                        <InputLabel>Filtrar por centro</InputLabel>
+                        <Select label="Filtrar por centro" onChange={e=>this.getData(e.target.value, this.state.fecha1, this.state.fecha2)}>
+                            <MenuItem value={0}>Todos</MenuItem>
+                            <MenuItem value='primera'>Primera Dosis</MenuItem>
+                            <MenuItem value='segunda'>Segunda Dosis</MenuItem>
+                            <MenuItem value='tercera'>Tercera Dosis</MenuItem>
+                        </Select>
+                    </FormControl> 
                 <StyledTable className="customized-table" id="tabla-citas-perdidas">
                     <TableHead >
                     <TableRow id="name-cita">
