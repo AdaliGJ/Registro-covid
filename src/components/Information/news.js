@@ -349,7 +349,6 @@ class News extends Component {
             <div>
                 <div className="page">
                     <MenuBar/>
-                    <h3>Welcome, {this.state.dpi_usuario}</h3>
                     <div style={{display: 'flex', alignContent:'space-between'}}>
                         <InsertTextoLado submit={this.sumbitTL} datos={this.state.formTextoLado} titulo='Agregar texto-lado' />
                         <InsertImgDesc submit={this.submitID} datos={this.state.formImgDesc} titulo='Agregar imagen-descripcion' /> 

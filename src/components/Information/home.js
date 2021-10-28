@@ -32,7 +32,6 @@ class Home extends React.Component{
             <div>
                 <MenuBar/>
                 <div className="page">
-                    <h3>Welcome, {this.context.username}, {this.context.tipoUsuario}</h3>
                     <ImgCarousel slides={SliderData}/>
                     <DescImagen texto="Esta es la sección de inicio de nuestra página, navega para conocer más sobre la vacuna y registro" />
                     <TextoLado derecha={true} texto="Cada 21 de septiembre se conmemora el Día Mundial del Alzheimer, enfermedad que se caracteriza por la pérdida irreversible de las capacidades intelectuales" img={this.state.baseUrl + "8510c1d80ad0564ec5927fdaa5505e47_XL.jpg"}/>

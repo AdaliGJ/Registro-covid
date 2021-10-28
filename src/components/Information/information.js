@@ -30,7 +30,6 @@ class Information extends React.Component{
             <div>
                 <div className="page">
                     <MenuBar/>
-                    <h3>Welcome, {this.state.dpi_usuario}</h3>
                     <Acordeon titulo="Sobre nosotros" texto="El Ministerio de Salud Pública y Asistencia Social de la República de Guatemala (MSPAS) le corresponde formular las políticas y hacer cumplir el régimen jurídico relativo a la salud preventiva y curativa y a las acciones de protección, promoción, recuperación y rehabilitación de la salud física y mental de los habitantes del país y a la preservación higiénica de medio ambiente; a la orientación y coordinación de la cooperación técnica y financiera en salud y a velar por el cumplimiento de los tratados y convenios internacionales relacionados con la salud en casos de emergencias por epidemias y desastres naturales."/>
                     <Acordeon titulo="Vacunación" texto="Selecciona el botón de registro para ingresar tus datos y poder obtener tu vacuna."/>
                     <TextoColumnas img={this.state.baseUrl +"priorizacion.png"} texto1="Guatemala es uno de los países en Latinoamérica más afectados por diferentes Problemas nutricionales, siendo la desnutrición crónica el problema que prevalece más y afectan a uno de cada dos niños menores de 5 años. La población más afectada es la niñez indígena y rural por los altos índices de pobreza, analfabetismo etc. (Principalmente en los departamentos del occidente y norte del país.)"
