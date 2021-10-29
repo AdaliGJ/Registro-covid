@@ -22,7 +22,7 @@ switch ($method) {
 	case 'GET':
 	$dpi_usuario = $_GET['dpi_usuario'];
   	 //"select dpi_usuario, tipo_usuario, nombre_completo from usuarios;";
-	$sql ="select dr.*, u.nombre_completo, nombre_vacuna(vacuna) nombre_v, DATE(now()) hoy from usuarios u inner join datos_registro dr on (u.dpi_usuario = dr.dpi_persona) ".($dpi_usuario?" where u.dpi_usuario=$dpi_usuario":'').";"; 
+	$sql ="select dr.*, u.nombre_completo, nombre_vacuna(vacuna) nombre_v, DATE(now()) hoy, dosis_vacuna(vacuna) dosis from usuarios u inner join datos_registro dr on (u.dpi_usuario = dr.dpi_persona) ".($dpi_usuario?" where u.dpi_usuario=$dpi_usuario":'').";"; 
 	
 	$result = mysqli_query($con,$sql);
 	$count = mysqli_num_rows($result);

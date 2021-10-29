@@ -21,11 +21,29 @@ if (!$con) {
 switch ($method) {
 	case 'GET':
 		$centro = $_GET['centro'];
+		$inicio = $_GET['inicio'];
+		$fin = $_GET['fin'];
 		
 		if($centro==0){
-  			$sql = "select * from reportes_centro;";
+			if($inicio=='' && $fin==''){
+  				$sql = "select * from reportes_centro;";
+			}else if($inicio=='' && $fin!=''){
+				$sql = "select * from reportes_centro where fecha_dosis < '$fin';";
+			}else if($inicio!='' && $fin==''){
+				$sql = "select * from reportes_centro where fecha_dosis > '$inicio';";
+			}else{
+				$sql = "select * from reportes_centro where fecha_dosis > '$inicio' AND fecha_dosis < '$fin';";
+			}
 		}else{
-			$sql = "select * from reportes_centro where puesto_registro = '$centro';";
+			if($inicio=='' && $fin==''){
+  				$sql = "select * from reportes_centro where puesto_registro = '$centro';";
+			}else if($inicio=='' && $fin!=''){
+				$sql = "select * from reportes_centro where puesto_registro = '$centro' AND fecha_dosis < '$fin';";
+			}else if($inicio!='' && $fin==''){
+				$sql = "select * from reportes_centro where puesto_registro = '$centro' AND fecha_dosis > '$inicio';";
+			}else{
+				$sql = "select * from reportes_centro where puesto_registro = '$centro' AND fecha_dosis > '$inicio' AND fecha_dosis < '$fin';";
+			}
 		}
   	break;
 

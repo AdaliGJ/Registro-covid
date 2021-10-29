@@ -20,6 +20,10 @@ if (!$con) {
 
 switch ($method) {
 	
+	case 'GET':
+		$dpi = $_GET['dpi'];
+  		$sql = "select count(*) conteo from solicitudes_empleados where dpi_empleado = '$dpi';";
+  	break;
 
 	case 'POST':
 		$dpi = $_POST['dpi'];
@@ -38,12 +42,11 @@ if (!$result) {
 }
 
 if ($method == 'GET') {
-	$usarray = array();
-    	while($row =mysqli_fetch_assoc($result))
-    	{
-        	$usarray[] = $row;
-    	}
-    echo json_encode($usarray);
+	$info = $result->fetch_assoc();
+        $contador = $info['conteo'];
+
+    	
+    echo json_encode($contador);
   } else {
 	$arows = mysqli_affected_rows($con);
 	if($arrows == 1){

@@ -20,16 +20,15 @@ if (!$con) {
 
 switch ($method) {
 	case 'GET':
-  	$sql = "select id_vacuna, nombre, dosis from vacunas";
+		$dosis = $_GET['dosis'];
+		if($dosis==0){
+			$sql = "select * from cita_perdida;";
+		}else{
+			$sql = "select * from cita_perdida where dosis_saltada = '$dosis';";
+		}	
   	break;
 
-	case 'POST':
-	$nombre = $_POST['nombre'];
-	$lab = $_POST['laboratorio'];
-	$dosis = $_POST['dosis'];
-	$dias = $_POST['dias'];
-	$sql = "call insertVacunas('$nombre','$lab','$dosis','$dias');";
-	break;
+
 }
 
 // run SQL statement
@@ -50,10 +49,7 @@ if ($method == 'GET') {
     	}
     echo json_encode($usarray);
   } else {
-	$arows = mysqli_affected_rows($con);
-	if($arrows == 1){
-		echo 1;
-	}
+	echo mysqli_affected_rows($con);
   }
 
 $con->close();

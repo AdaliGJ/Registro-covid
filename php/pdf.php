@@ -20,16 +20,18 @@ if (!$con) {
 
 switch ($method) {
 	case 'GET':
-  	$sql = "select id_vacuna, nombre, dosis from vacunas";
+	$dpi=$_GET['dpi'];
+  	$sql = "select i.*, u.fecha_inscripcion, dosis_vacuna(i.vacuna) dosis_vacuna, u.nombre_completo, nombre_vacuna(i.vacuna) nombre_vacuna from pdf_proceso i inner join usuarios u on (i.dpi_persona = u.dpi_usuario) where dpi_persona = '$dpi' order by i.fecha_creacion desc limit 1;";
   	break;
-
+	
 	case 'POST':
-	$nombre = $_POST['nombre'];
-	$lab = $_POST['laboratorio'];
-	$dosis = $_POST['dosis'];
-	$dias = $_POST['dias'];
-	$sql = "call insertVacunas('$nombre','$lab','$dosis','$dias');";
+	$dpi=$_POST['dpi'];
+	
+	$sql="call generar_pdf('$dpi');"; 
+	 
+	
 	break;
+		
 }
 
 // run SQL statement
@@ -43,17 +45,16 @@ if (!$result) {
 }
 
 if ($method == 'GET') {
-	$usarray = array();
+	//$info = $result->fetch_assoc();
+	$emparray = array();
     	while($row =mysqli_fetch_assoc($result))
     	{
-        	$usarray[] = $row;
+        	$emparray[] = $row;
     	}
-    echo json_encode($usarray);
+    	echo json_encode($emparray);
+    	//echo json_encode($info);
   } else {
-	$arows = mysqli_affected_rows($con);
-	if($arrows == 1){
-		echo 1;
-	}
+	echo mysqli_affected_rows($con);
   }
 
 $con->close();

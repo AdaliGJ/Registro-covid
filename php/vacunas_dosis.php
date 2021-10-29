@@ -20,16 +20,10 @@ if (!$con) {
 
 switch ($method) {
 	case 'GET':
-  	$sql = "select id_vacuna, nombre, dosis from vacunas";
+	$vacuna = $_GET['vacuna'];
+  	$sql = "select dosis from vacunas where id_vacuna = '$vacuna'";
   	break;
 
-	case 'POST':
-	$nombre = $_POST['nombre'];
-	$lab = $_POST['laboratorio'];
-	$dosis = $_POST['dosis'];
-	$dias = $_POST['dias'];
-	$sql = "call insertVacunas('$nombre','$lab','$dosis','$dias');";
-	break;
 }
 
 // run SQL statement
