@@ -38,7 +38,8 @@ class DataRegister extends React.Component{
             centros: [],
             userinfo: [], 
             exito: false,
-            enviado: 0
+            enviado: 0,
+            error: false
         }
 
         this.mySubmit=this.mySubmit.bind(this);
@@ -112,6 +113,7 @@ class DataRegister extends React.Component{
                 sexo: '',
                 enfermedad: '',
                 trabajo: '',
+                error: false
                
             });
             console.log(response);
@@ -121,7 +123,8 @@ class DataRegister extends React.Component{
         .catch((response)=>{
             console.log(response);
             this.setState({
-                exito: false
+                exito: false,
+                error: true
             });
             this.context.setUsername(null);
             this.context.setTipoUsuario(null);
@@ -233,6 +236,7 @@ class DataRegister extends React.Component{
                         </Grid>
                          
                         <Alert severity="success" id={this.state.exito ? "data_success": "no_data_success"}>Usuario Ingresado Exitosamente ir a <Link to="/home">Inicio</Link></Alert>
+                        <Alert severity="error" id={this.state.error ? "data_error": "no_data_error"}>Error, no se puede ingresar al usuario. Revise si cumple con los parámetros de vacunación actuales</Alert>
                        
                     </Grid>
                     </div>
