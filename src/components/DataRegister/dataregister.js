@@ -123,6 +123,8 @@ class DataRegister extends React.Component{
             this.setState({
                 exito: false
             });
+            this.context.setUsername(null);
+            this.context.setTipoUsuario(null);
         });
         console.log(this.state.centro_vacunacion);
     }
